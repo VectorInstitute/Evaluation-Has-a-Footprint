@@ -19,8 +19,18 @@ model, dataset, condition, prepared-data directory, output directory, and the
 explicit frozen membership file for M4/M5. The metadata-only manifests in
 `data/manifests/` reproduce the paper's retained units exactly, while
 `evaluation_has_a_footprint.subsets` deterministically regenerates and validates
-them against separately prepared upstream data. Gemma and telemetry are not
-included in the current public scope.
+them against separately prepared upstream data. Gemma is not included in the
+current public scope.
+
+Telemetry is optional: install it with `uv sync --group telemetry` in addition
+to the inference dependencies. Use `--telemetry` to measure only prediction
+generation. The explicit `--carbon-profile accepted-campaign` reproduces the
+59.0 gCO2e/kWh Ontario/ECCC, location-unconfirmed campaign scenario; for other
+settings, provide `--carbon-intensity-g-per-kwh` rather than assuming a
+location. `footprint.json` records NVML GPU-attributed energy as the primary
+measurement and CodeCarbon as a broader secondary cross-check. Water is always
+reported as an estimated 1.8–4.0 L/kWh range, with CodeCarbon total energy as
+the primary basis and NVML GPU energy as a secondary basis.
 
 The public parser reproduces the finalized general Qwen parsing and deterministic
 maintenance-recovery methodology. Two historical Qwen2.5 BBQ-V INT4 records

@@ -42,6 +42,10 @@ campaign-reproduction = [
     "torchvision==0.26.0",
     "Pillow==12.3.0",
 ]
+telemetry = [
+    "codecarbon==3.3.0",
+    "nvidia-ml-py==13.610.43",
+]
 docs = [
     "jinja2>=3.1.6", # Pinning version to address vulnerability GHSA-cpwx-vrp4-4pq7
     "pygments>=2.20.0", # Pinning version to address vulnerability CVE-2026-4539

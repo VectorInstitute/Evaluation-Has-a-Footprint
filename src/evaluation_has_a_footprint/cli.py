@@ -23,11 +23,19 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--subset-rows", type=int)
     parser.add_argument("--replicate", type=int, default=1)
     parser.add_argument("--max-pixels-override", type=int)
+    parser.add_argument("--telemetry", action="store_true", help="Measure prediction-generation footprint only.")
+    parser.add_argument("--telemetry-device-index", type=int)
+    parser.add_argument("--carbon-profile", choices=("accepted-campaign",))
+    parser.add_argument("--carbon-intensity-g-per-kwh", type=float)
     args = parser.parse_args(argv)
     if not args.prepared_dataset.exists():
         parser.error("prepared dataset path does not exist")
     if args.membership is not None and not args.membership.is_file():
         parser.error("membership path does not exist")
+    if args.carbon_profile is not None and args.carbon_intensity_g_per_kwh is not None:
+        parser.error("choose either --carbon-profile or --carbon-intensity-g-per-kwh")
+    if (args.carbon_profile is not None or args.carbon_intensity_g_per_kwh is not None) and not args.telemetry:
+        parser.error("carbon options require --telemetry")
     condition = resolve_condition(
         args.condition,
         model_key=args.model,
@@ -44,6 +52,10 @@ def main(argv: list[str] | None = None) -> int:
         prepared_dataset=args.prepared_dataset,
         output=args.output,
         membership_path=args.membership,
+        telemetry=args.telemetry,
+        telemetry_device_index=args.telemetry_device_index,
+        carbon_profile=args.carbon_profile,
+        carbon_intensity_g_per_kwh=args.carbon_intensity_g_per_kwh,
     )
     return 0
 

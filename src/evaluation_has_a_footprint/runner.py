@@ -24,6 +24,7 @@ from .inference import (
 from .metrics import breakdown, summary
 from .model_registry import MODELS
 from .parsing import recover_maintenance
+from .telemetry import start_measurement, stop_measurement
 
 
 def _stable_json(value: Any) -> str:
@@ -115,6 +116,10 @@ def run_prepared_evaluation(
     prepared_dataset: Path,
     output: Path,
     membership_path: Path | None = None,
+    telemetry: bool = False,
+    telemetry_device_index: int | None = None,
+    carbon_profile: str | None = None,
+    carbon_intensity_g_per_kwh: float | None = None,
 ) -> dict[str, Any]:
     """Run one accepted campaign profile without downloads, schedulers, or tracking."""
     required_modality = "text" if dataset == "bbq" else "image_text"
@@ -137,7 +142,19 @@ def run_prepared_evaluation(
         raise ValueError("Membership is valid only for M4/M5")
     output.mkdir(parents=True, exist_ok=False)
     bundle = load_model(model_key, quantization=condition.quantization)
-    predictions = _predict(bundle, records, dataset, condition)
+    telemetry_handle: dict[str, Any] | None = None
+    footprint: dict[str, Any] | None = None
+    if telemetry:
+        telemetry_handle = start_measurement(
+            device_index=telemetry_device_index,
+            carbon_profile=carbon_profile,
+            carbon_intensity_g_per_kwh=carbon_intensity_g_per_kwh,
+        )
+    try:
+        predictions = _predict(bundle, records, dataset, condition)
+    finally:
+        if telemetry_handle is not None:
+            footprint = stop_measurement(telemetry_handle, evaluated_items=len(records))
     metadata = {record["sample_id"]: record for record in records}
     metrics = {
         "schema_version": "public-metrics-v1",
@@ -182,9 +199,20 @@ def run_prepared_evaluation(
         "software": _runtime_versions(),
         "quantization_verification": bundle["quantization"],
     }
+    if footprint is not None:
+        run["telemetry"] = {
+            "enabled": True,
+            "measurement_status": footprint["measurement_status"],
+            "footprint_artifact": "footprint.json",
+        }
     _write_json(output / "run.json", run)
     (output / "predictions.jsonl").write_text(
         "".join(_stable_json(row) + "\n" for row in predictions), encoding="utf-8"
     )
     _write_json(output / "metrics.json", metrics)
-    return {"run": run, "metrics": metrics, "predictions": predictions}
+    if footprint is not None:
+        _write_json(output / "footprint.json", footprint)
+    result: dict[str, Any] = {"run": run, "metrics": metrics, "predictions": predictions}
+    if footprint is not None:
+        result["footprint"] = footprint
+    return result
