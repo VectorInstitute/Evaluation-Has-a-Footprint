@@ -1,22 +1,6 @@
 # API Reference
 
-## Top Level Module
-
-::: aieng_template_uv
-    options:
-      show_root_heading: true
-      show_root_full_path: true
-
-## Foo Module
-
-::: aieng_template_uv.foo
-    options:
-      show_root_heading: true
-      show_root_full_path: true
-
-## Bar Module
-
-::: aieng_template_uv.bar
-    options:
-      show_root_heading: true
-      show_root_full_path: true
+The lightweight package provides frozen-dataset validation, membership verification,
+answer parsing, ground-truth metrics, finalized judge-prompt provenance, and model
+metadata. The optional `campaign-reproduction` dependency group enables the portable
+deterministic Qwen inference runner; judge execution is not included.

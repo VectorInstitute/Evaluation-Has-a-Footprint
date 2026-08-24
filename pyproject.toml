@@ -1,12 +1,12 @@
 [project]
-name = "aieng-template-uv"
+name = "evaluation-has-a-footprint"
 version = "0.1.1"
-description = "Add your description here"
+description = "Tools and documentation for evaluating the quality and environmental footprint of model evaluation."
 readme = "README.md"
 authors = [ {name = "Vector AI Engineering", email = "ai_engineering@vectorinstitute.ai"}]
 license = "Apache-2.0"
-repository = "https://github.com/VectorInstitute/aieng-template-uv"
-requires-python = ">=3.12"
+repository = "https://github.com/VectorInstitute/Evaluation-Has-a-Footprint"
+requires-python = ">=3.11"
 dependencies = [
     "filelock==3.32.3",
     "requests>=2.33.0", # Pinning version to address vulnerability CVE-2026-25645
@@ -32,6 +32,15 @@ dev = [
     "pytest-mock>=3.14.0",
     "msgpack>=1.2.1", # Pinning version to address vulnerability GHSA-6v7p-g79w-8964
     "ruff>=0.13.3",
+]
+campaign-reproduction = [
+    "torch==2.11.0",
+    "transformers==4.57.6",
+    "accelerate==1.14.0",
+    "bitsandbytes==0.50.1",
+    "qwen-vl-utils==0.0.14",
+    "torchvision==0.26.0",
+    "Pillow==12.3.0",
 ]
 docs = [
     "jinja2>=3.1.6", # Pinning version to address vulnerability GHSA-cpwx-vrp4-4pq7
@@ -144,5 +153,5 @@ markers = [
 
 [tool.coverage]
     [tool.coverage.run]
-    source=["src/aieng_template_uv"]
+    source=["src/evaluation_has_a_footprint"]
     omit=["tests/*", "*__init__.py"]

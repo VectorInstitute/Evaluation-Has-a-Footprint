@@ -1,74 +1,41 @@
-# AI Engineering template (with uv)
+# Evaluation Has a Footprint
 
-----------------------------------------------------------------------------------------
+Research release in preparation.
 
-[![code checks](https://github.com/VectorInstitute/aieng-template-uv/actions/workflows/code_checks.yml/badge.svg)](https://github.com/VectorInstitute/aieng-template-uv/actions/workflows/code_checks.yml)
-[![unit tests](https://github.com/VectorInstitute/aieng-template-uv/actions/workflows/unit_tests.yml/badge.svg)](https://github.com/VectorInstitute/aieng-template-uv/actions/workflows/unit_tests.yml)
-[![integration tests](https://github.com/VectorInstitute/aieng-template-uv/actions/workflows/integration_tests.yml/badge.svg)](https://github.com/VectorInstitute/aieng-template-uv/actions/workflows/integration_tests.yml)
-[![docs](https://github.com/VectorInstitute/aieng-template-uv/actions/workflows/docs.yml/badge.svg)](https://github.com/VectorInstitute/aieng-template-uv/actions/workflows/docs.yml)
-[![codecov](https://codecov.io/github/VectorInstitute/aieng-template-uv/graph/badge.svg?token=83MYFZ3UPA)](https://codecov.io/github/VectorInstitute/aieng-template-uv)
-![GitHub License](https://img.shields.io/github/license/VectorInstitute/aieng-template-uv)
+This repository accompanies *Evaluation Has a Footprint*. It studies
+evaluation-efficiency interventions across the frozen BBQ and BBQ-V benchmarks
+while tracking quality and environmental footprint measures.
 
-A template repo for AI Engineering projects (using ``python``) and ``uv``. This
-template is like our original AI Engineering [template](https://github.com/VectorInstitute/aieng-template),
-however, unlike how that template uses poetry, this one uses uv for dependency
-management (as well as packaging and publishing).
+## Development
 
-## 🧑🏿‍💻 Developing
-
-### Installing dependencies
-
-The development environment can be set up using
-[uv](https://github.com/astral-sh/uv?tab=readme-ov-file#installation). Hence, make sure it is
-installed and then run:
+Set up the development environment with [uv](https://docs.astral.sh/uv/):
 
 ```bash
 uv sync
-source .venv/bin/activate
 ```
 
-In order to install dependencies for testing (codestyle, unit tests, integration tests),
-run:
+Run the checks locally:
 
 ```bash
-uv sync --dev
-source .venv/bin/activate
+uv run pytest
+uv run pre-commit run --all-files
 ```
 
-In order to exclude installation of packages from a specific group (e.g. docs),
-run:
+Build the documentation:
 
 ```bash
-uv sync --no-group docs
+uv run mkdocs build
 ```
 
-If you're coming from `poetry` then you'll notice that the virtual environment
-is actually stored in the project root folder and is by default named as `.venv`.
-The other important note is that while `poetry` uses a "flat" layout of the project,
-`uv` opts for the the "src" layout. (For more info, see [here](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/))
+## Data, model weights, and results
 
-### Poetry to UV
+Benchmark data, images, model weights, and the internal experimental run archive
+are not bundled with this repository. Prepared data must be obtained separately;
+the current scope covers the finalized two-model Qwen campaign only.
 
-The table below provides the `uv` equivalent counterparts for some of the more
-common `poetry` commands.
+## Optional campaign reproduction
 
-| Poetry                                               | UV                                          |
-|------------------------------------------------------|---------------------------------------------|
-| `poetry new <project-name>`  # creates new project   | `uv init <project-name>`                    |
-| `poetry install`  # installs existing project        | `uv sync`                                   |
-| `poetry install --with docs,test`                    | `uv sync --group docs --group test`         |
-| `poetry add numpy`                                   | `uv add numpy`                              |
-| `poetry add pytest pytest-asyncio --groups dev`      | `uv add pytest pytest-asyncio --groups dev` |
-| `poetry remove numpy`                                | `uv remove numpy`                           |
-| `poetry lock`                                        | `uv lock`                                   |
-| `poetry run <cmd>`  # runs cmd with the project venv | `uv run <cmd>`                              |
-| `poetry build`                                       | `uv build`                                  |
-| `poetry publish`                                     | `uv publish`                                |
-| `poetry cache clear pypi --all`                      | `uv cache clean`                            |
-
-For the full list of `uv` commands, you can visit the official [docs](https://docs.astral.sh/uv/reference/cli/#uv).
-
-### Tidbit
-
-If you're curious about what "uv" stands for, it appears to have been more or
-less chosen [randomly](https://github.com/astral-sh/uv/issues/1349#issuecomment-1986451785).
+Install GPU inference dependencies with `uv sync --group campaign-reproduction`.
+Prepared benchmark data and upstream model access are supplied explicitly;
+default CI does not download models or run GPU inference. Gemma, telemetry, and
+the exact M4 membership manifests are not part of this release phase.
