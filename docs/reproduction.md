@@ -16,8 +16,11 @@ Prepared data must be supplied separately as a directory containing `sample.csv`
 and its matching `sampling.json`; prepared BBQ-V also requires an `images/`
 directory with the hash-verified JPEG files. Invoke the runner with a pinned
 model, dataset, condition, prepared-data directory, output directory, and the
-explicit frozen membership file for M4/M5. Gemma, telemetry, and release of the
-exact M4 manifests are not included in the current public scope.
+explicit frozen membership file for M4/M5. The metadata-only manifests in
+`data/manifests/` reproduce the paper's retained units exactly, while
+`evaluation_has_a_footprint.subsets` deterministically regenerates and validates
+them against separately prepared upstream data. Gemma and telemetry are not
+included in the current public scope.
 
 The public parser reproduces the finalized general Qwen parsing and deterministic
 maintenance-recovery methodology. Two historical Qwen2.5 BBQ-V INT4 records

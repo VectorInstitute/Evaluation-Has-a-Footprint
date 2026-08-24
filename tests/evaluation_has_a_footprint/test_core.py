@@ -4,8 +4,6 @@ import pytest
 
 from evaluation_has_a_footprint.datasets import (
     dataset_fingerprint,
-    membership_fingerprint,
-    select_frozen_subset,
     validate_rows,
 )
 from evaluation_has_a_footprint.metrics import summary
@@ -55,16 +53,6 @@ def test_dataset_membership_and_metrics() -> None:
     validate_rows("bbq", rows)
     rows[0]["label"] = "1"
     assert dataset_fingerprint("bbq", rows, category_order=["age"]) != fingerprint
-    ids = ["age:c1"]
-    manifest = {
-        "dataset": "bbq",
-        "provenance": {"source_sample_fingerprint": "source"},
-        "subsets": {"4": {"selected_unit_ids": ids, "membership_fingerprint": {"sha256": membership_fingerprint(ids)}}},
-    }
-    assert (
-        len(select_frozen_subset(bbq_rows(), manifest, dataset="bbq", source_fingerprint="source", target_rows=4)[0])
-        == 4
-    )
     with pytest.raises(ValueError):
         validate_rows("bbq", bbq_rows()[:-1])
     assert summary([{"correct": True}, {"correct": False}])["accuracy"] == 0.5

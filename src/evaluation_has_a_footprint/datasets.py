@@ -9,6 +9,8 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any, Iterable
 
+from .subsets import select_manifest_records
+
 
 DATASET_SPECS = {
     "bbq": {
@@ -235,32 +237,10 @@ def select_frozen_subset(
     """Verify and select one recorded membership without resampling."""
     values = list(rows)
     validate_rows(dataset, values)
-    if (
-        manifest.get("dataset") != dataset
-        or manifest.get("provenance", {}).get("source_sample_fingerprint") != source_fingerprint
-    ):
-        raise ValueError("Membership does not match the frozen dataset")
-    entry = manifest.get("subsets", {}).get(str(target_rows))
-    if not isinstance(entry, dict):
-        raise ValueError("Unknown target_rows")
-    selected = entry.get("replicates", {}).get(str(replicate), entry if replicate == 1 else None)
-    if not isinstance(selected, dict):
-        raise ValueError("Unknown replicate")
-    ids = selected.get("selected_unit_ids")
-    if not isinstance(ids, list) or len(ids) != len(set(ids)):
-        raise ValueError("Invalid membership IDs")
-    actual = membership_fingerprint(ids)
-    if selected.get("membership_fingerprint", {}).get("sha256") != actual:
-        raise ValueError("Membership fingerprint mismatch")
-    grouped: dict[str, list[dict[str, str]]] = defaultdict(list)
-    for row in values:
-        grouped[unit_id(dataset, row)].append(row)
-    unknown = set(ids) - set(grouped)
-    if unknown:
-        raise ValueError(f"Unknown membership ID: {sorted(unknown)[0]}")
-    chosen = [row for identifier in ids for row in grouped[identifier]]
-    if len(chosen) != target_rows:
-        raise ValueError("Membership row count mismatch")
+    chosen = select_manifest_records(values, manifest, dataset, source_fingerprint, target_rows, replicate)
+    entry = manifest["subsets"][str(target_rows)]
+    selected = entry.get("replicates", {}).get(str(replicate), entry)
+    actual = membership_fingerprint(selected["selected_unit_ids"])
     return sorted(chosen, key=lambda row: row.get("sample_id", row.get("id", row.get("example_id", "")))), actual
 
 
