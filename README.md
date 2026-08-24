@@ -31,11 +31,13 @@ uv run mkdocs build
 
 Benchmark data, images, model weights, and the internal experimental run archive
 are not bundled with this repository. Prepared data must be obtained separately;
-the current scope covers the finalized two-model Qwen campaign only.
+the current scope covers the finalized two-model Qwen campaign only. Curated
+aggregate-only results are available in [results/README.md](results/README.md).
 
 ## Optional campaign reproduction
 
 Install GPU inference dependencies with `uv sync --group campaign-reproduction`.
 Prepared benchmark data and upstream model access are supplied explicitly;
-default CI does not download models or run GPU inference. Gemma, telemetry, and
-the exact M4 membership manifests are not part of this release phase.
+default CI does not download models or run GPU inference. The exact M4
+membership manifests are available under `data/manifests/`; telemetry remains
+an optional dependency.

@@ -1,0 +1,60 @@
+{
+  "all_passed": true,
+  "checks": [
+    {
+      "check": "full_m0_reproduction[bbq/qwen25_vl_7b]",
+      "hard": true,
+      "passed": true
+    },
+    {
+      "check": "full_m0_reproduction[bbq/qwen3_vl_30b_a3b]",
+      "hard": true,
+      "passed": true
+    },
+    {
+      "check": "full_m0_reproduction[bbq_v/qwen25_vl_7b]",
+      "hard": true,
+      "passed": true
+    },
+    {
+      "check": "full_m0_reproduction[bbq_v/qwen3_vl_30b_a3b]",
+      "hard": true,
+      "passed": true
+    },
+    {
+      "check": "natural_unit_counts",
+      "hard": true,
+      "passed": true
+    },
+    {
+      "check": "exactly_1000_draws_per_dataset_fraction",
+      "hard": true,
+      "passed": true
+    },
+    {
+      "check": "bbq_row_counts_match_unit_target_x4",
+      "hard": true,
+      "passed": true
+    }
+  ],
+  "fraction_targets": {
+    "bbq": {
+      "25%": 125,
+      "37%": 187,
+      "50%": 250,
+      "75%": 375,
+      "smallest": 62
+    },
+    "bbq_v": {
+      "25%": 100,
+      "37%": 149,
+      "50%": 195,
+      "75%": 291,
+      "smallest": 57
+    }
+  },
+  "method": "1,000 independent stratified draws over frozen M0 outputs; not new inference runs.",
+  "n_draws": 1000,
+  "schema_version": "public-monte-carlo-provenance-v1",
+  "seed": 20260824
+}
