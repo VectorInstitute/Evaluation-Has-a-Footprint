@@ -1,6 +1,6 @@
 # Methodology
 
-The public release will describe the frozen benchmark inputs, evaluation
+This public release documents the frozen benchmark inputs, evaluation
 conditions, quality measures, and environmental-footprint measurement boundary.
 
 The study evaluates the same examples under efficiency interventions and compares

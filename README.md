@@ -1,6 +1,6 @@
 # Evaluation Has a Footprint
 
-Research release in preparation.
+Research code and aggregate-results release.
 
 This repository accompanies *Evaluation Has a Footprint*. It studies
 evaluation-efficiency interventions across the frozen BBQ and BBQ-V benchmarks
