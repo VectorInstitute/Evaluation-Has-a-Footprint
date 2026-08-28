@@ -1,9 +1,5 @@
 # Sustainable Responsible-AI Evaluation: When Compute Savings Change Benchmark Conclusions
 
-Research code and frozen-membership metadata for the paper
-*Sustainable Responsible-AI Evaluation: When Compute Savings Change Benchmark
-Conclusions*.
-
 **Authors:** [Ahmed El Kady](https://github.com/goushaa)<sup>1</sup>,
 [Aravind Narayanan](https://scholar.google.com/citations?hl=en&user=KCVuy2UAAAAJ)<sup>1</sup>,
 Rehana Noorani<sup>2</sup>, and
