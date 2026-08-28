@@ -403,8 +403,8 @@ def stop_measurement(handle: dict[str, Any], *, evaluated_items: int | None) -> 
     warnings: list[str] = list(handle["warnings"])
     pynvml = handle["_pynvml"]
     nvml_handle = handle["_nvml_handle"]
-    codecarbon = _extract_codecarbon(handle["_tracker"], handle["_codecarbon"], pynvml, handle["identity"].get("uuid"))
     _sync_cuda(handle["_torch"], warnings)
+    codecarbon = _extract_codecarbon(handle["_tracker"], handle["_codecarbon"], pynvml, handle["identity"].get("uuid"))
     stopped_monotonic = time.monotonic()
     end_mj: float | None = None
     if nvml_handle is not None:

@@ -31,6 +31,20 @@ def _stable_json(value: Any) -> str:
     return json.dumps(value, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
 
 
+def _scientific_prediction_fingerprint(predictions: list[dict[str, Any]]) -> str:
+    """Fingerprint prediction outcomes without volatile runtime metadata."""
+    scientific_rows = (
+        {
+            "sample_id": row["sample_id"],
+            "output": {"answer": row["output"]["answer"]},
+            "correct": row["correct"],
+            "status": row["status"],
+        }
+        for row in predictions
+    )
+    return hashlib.sha256("".join(_stable_json(row) + "\n" for row in scientific_rows).encode()).hexdigest()
+
+
 def _write_json(path: Path, value: Any) -> None:
     path.write_text(_stable_json(value) + "\n", encoding="utf-8")
 
@@ -159,9 +173,7 @@ def run_prepared_evaluation(
     metrics = {
         "schema_version": "public-metrics-v1",
         "source": {"dataset_fingerprint": dataset_info["sample_fingerprint"]},
-        "prediction_fingerprint": hashlib.sha256(
-            "".join(_stable_json(row) + "\n" for row in predictions).encode()
-        ).hexdigest(),
+        "prediction_fingerprint": _scientific_prediction_fingerprint(predictions),
         "gt": summary(predictions),
     }
     breakdowns: dict[str, Any] = {

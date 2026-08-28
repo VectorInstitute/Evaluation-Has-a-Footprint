@@ -16,7 +16,7 @@ TARGETS = {
 }
 
 # Additional deterministic, distinct memberships (replicates 2-5) are generated
-# only for the ~50% and ~12-13% row counts, per Shaina's finalized 19-run
+# only for the ~50% and ~12-13% row counts, per the finalized 19-run
 # design. Replicate 1 always equals the pre-existing canonical M4 curve member
 # for that target, unchanged, produced by the default SEED.
 REPLICATE_COUNT = 5

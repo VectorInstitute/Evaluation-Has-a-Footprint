@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from evaluation_has_a_footprint.conditions import resolve_condition
-from evaluation_has_a_footprint.runner import run_prepared_evaluation
+from evaluation_has_a_footprint.runner import _scientific_prediction_fingerprint, run_prepared_evaluation
 
 
 def _records() -> list[dict[str, Any]]:
@@ -27,6 +27,31 @@ def _records() -> list[dict[str, Any]]:
             "label": "0",
         }
     ]
+
+
+def test_prediction_fingerprint_excludes_runtime_metadata() -> None:
+    predictions = [
+        {
+            "sample_id": "age:0",
+            "output": {"answer": "A", "raw": "first", "reasoning": "x"},
+            "correct": True,
+            "status": "success",
+            "batch_latency_seconds": 0.1,
+        },
+        {
+            "sample_id": "age:1",
+            "output": {"answer": None, "raw": None, "reasoning": None},
+            "correct": None,
+            "status": "parse_failure",
+            "batch_latency_seconds": 0.2,
+        },
+    ]
+    changed_runtime = [{**row, "batch_latency_seconds": 99.0} for row in predictions]
+    assert _scientific_prediction_fingerprint(predictions) == _scientific_prediction_fingerprint(changed_runtime)
+    assert (
+        _scientific_prediction_fingerprint(predictions)
+        == "b0e12e782eb61e69722ef15bbacc2ae111245aeb75db1395193666f2c5f3a644"
+    )
 
 
 def test_runner_writes_portable_artifacts(monkeypatch: Any, tmp_path: Path) -> None:

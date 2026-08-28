@@ -223,7 +223,7 @@ def test_measurement_order_identity_quality_and_public_artifact(monkeypatch: pyt
         < events.index("tracker.start")
     )
     assert (
-        events.index("tracker.stop") < events.index("sync", events.index("tracker.stop")) < events.index("energy:4600")
+        events.index("sync", events.index("tracker.start")) < events.index("tracker.stop") < events.index("energy:4600")
     )
     assert footprint["boundary"] == "inference_only"
     assert footprint["nvml"]["kwh"] == pytest.approx(1e-6)
