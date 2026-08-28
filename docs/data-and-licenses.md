@@ -40,6 +40,7 @@ from their original sources and comply with their upstream licenses.
   revision `cc594898137f460bfe9f0759e9844b3ce807cfb5`.
 - [`Qwen/Qwen3-VL-30B-A3B-Instruct`](https://huggingface.co/Qwen/Qwen3-VL-30B-A3B-Instruct),
   revision `9c4b90e1e4ba969fd3b5378b57d966d725f1b86c`.
-
-The paper also reports Gemma-4-12B-it results; no Gemma model weights or
-runnable Gemma profile are distributed by this repository.
+- [`google/gemma-4-12B-it`](https://huggingface.co/google/gemma-4-12B-it),
+  revision `707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7`.
+  Gemma requires a separate Transformers 5.x environment; see
+  [REPRODUCIBILITY.md](../REPRODUCIBILITY.md#5-gemma-4-environment).

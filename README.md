@@ -4,6 +4,13 @@ Research code and frozen-membership metadata for the paper
 *Sustainable Responsible-AI Evaluation: When Compute Savings Change Benchmark
 Conclusions*.
 
+**Authors:** [Ahmed El Kady](https://github.com/goushaa)<sup>1</sup>,
+[Aravind Narayanan](https://scholar.google.com/citations?hl=en&user=KCVuy2UAAAAJ)<sup>1</sup>,
+Rehana Noorani<sup>2</sup>, and
+[Shaina Raza](https://scholar.google.com/citations?user=chcz7RMAAAAJ&hl=en)<sup>1</sup>
+
+<sup>1</sup>Vector Institute  <sup>2</sup>Independent researcher
+
 Responsible-AI evaluation has a computational footprint, yet efficiency is
 rarely assessed alongside the conclusions that benchmarks are meant to support.
 We evaluate Qwen2.5-VL-7B, Qwen3-VL-30B-A3B, and Gemma-4-12B-it on BBQ and
@@ -31,10 +38,9 @@ their spread is descriptive rather than independent sampling uncertainty.
 
 - **Project website:** [vectorinstitute.github.io/Evaluation-Has-a-Footprint](https://vectorinstitute.github.io/Evaluation-Has-a-Footprint/) ([source in `doc/`](doc/))
 - **Code:** [VectorInstitute/Evaluation-Has-a-Footprint](https://github.com/VectorInstitute/Evaluation-Has-a-Footprint)
+- **arXiv:** To be added
 - **BBQ (original benchmark):** [NYU BBQ repository](https://github.com/nyu-mll/BBQ)
 - **BBQ-V (original benchmark):** [UCF-CRCV BBQ-Vision repository](https://github.com/UCF-CRCV/BBQ-Vision)
-
-No public paper or arXiv URL is currently recorded in the source materials.
 
 ## Datasets and frozen evaluation sets
 
@@ -100,4 +106,26 @@ does not grant rights to BBQ, BBQ-V, model weights, or any upstream material.
 See [docs/data-and-licenses.md](docs/data-and-licenses.md) and the upstream
 projects for applicable dataset and model terms.
 
-Citation metadata will be added when public paper metadata are finalized.
+## Acknowledgments
+
+Resources used in preparing this research were provided, in part, by the
+Province of Ontario, the Government of Canada through CIFAR, and companies
+sponsoring the Vector Institute.
+
+This research was funded by the European Union's Horizon Europe research and
+innovation programme under the AIXPERT project (Grant Agreement No. 101214389).
+
+## Citation
+
+BibTeX: **To be added**
+
+```bibtex
+% To be added
+```
+
+## Contact
+
+For questions or collaborations, please open an issue in this repository or
+contact the corresponding author at
+[shaina.raza@vectorinstitute.ai](mailto:shaina.raza@vectorinstitute.ai), as
+listed in the paper.
