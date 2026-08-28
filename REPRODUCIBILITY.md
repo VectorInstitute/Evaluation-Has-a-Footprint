@@ -1,10 +1,10 @@
 # Reproducibility
 
-This repository reproduces the frozen evaluation membership and the portable
-Qwen evaluation protocol without redistributing BBQ or BBQ-V. The paper's
-scientific results cover three models (Qwen2.5-VL-7B, Qwen3-VL-30B-A3B, and
-Gemma-4-12B-it); the runnable public package currently exposes the finalized
-Qwen profiles only.
+This repository reproduces the frozen evaluation membership and portable
+evaluation profiles without redistributing BBQ or BBQ-V. The paper's scientific
+results cover Qwen2.5-VL-7B, Qwen3-VL-30B-A3B, and Gemma-4-12B-it. Gemma
+support requires a separate compatible Transformers 5.x environment; see
+[Gemma environment](#5-gemma-4-environment).
 
 ## 1. Obtain the original benchmarks
 
@@ -94,11 +94,24 @@ measures prediction generation only. The explicit
 Ontario/ECCC, location-unconfirmed scenario; it is not a universal emissions
 factor.
 
+## 5. Gemma 4 environment
+
+The accepted Qwen runs use the existing `transformers==4.57.6` environment
+declared by the `campaign-reproduction` dependency group. The accepted
+Gemma-4-12B-it runs require a Transformers 5.x build exposing
+`Gemma4UnifiedForConditionalGeneration`; the canonical runs used
+`transformers==5.14.1+computecanada`. The public PyPI release
+`transformers==5.14.1` includes that class, but numerical equivalence with the
+canonical cluster build has not been verified here. Do not assume the
+Compute Canada build is installable from PyPI. Configure a compatible
+Transformers 5.x environment and confirm the class is available before running
+Gemma; the public runtime intentionally fails closed when it is unavailable.
+
 ## What this does not reproduce
 
 This release does not redistribute benchmark content, model weights, raw
 predictions, judge archives, or the internal run archive. It also does not
 claim byte-for-byte recreation of every historical accepted prediction artifact
-or provide a public Gemma runner. The curated aggregate
+or package a platform-independent Gemma environment. The curated aggregate
 results in [`results/`](results/) document the finalized public Qwen release;
 the paper is the authority for the full three-model scientific claims.

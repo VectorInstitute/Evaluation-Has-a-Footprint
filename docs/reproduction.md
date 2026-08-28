@@ -4,10 +4,12 @@ For the full current release procedure, including metadata-only frozen-set
 manifests, see the repository's
 [REPRODUCIBILITY.md](https://github.com/VectorInstitute/Evaluation-Has-a-Footprint/blob/main/REPRODUCIBILITY.md).
 
-The portable runner reproduces the finalized Qwen evaluation protocol from
-caller-prepared BBQ and BBQ-V data. It never downloads benchmark data,
-schedules jobs, or configures infrastructure. The paper reports three models;
-the public runnable package currently exposes the two Qwen campaign profiles.
+The portable runner reproduces the finalized Qwen evaluation protocol and
+includes Gemma-4-12B-it support from caller-prepared BBQ and BBQ-V data. It
+never downloads benchmark data, schedules jobs, or configures infrastructure.
+Gemma requires a separate compatible Transformers 5.x environment; the
+canonical requirement and fail-closed behavior are documented in
+[REPRODUCIBILITY.md](https://github.com/VectorInstitute/Evaluation-Has-a-Footprint/blob/main/REPRODUCIBILITY.md#5-gemma-4-environment).
 
 Install lightweight validation and documentation dependencies with `uv sync`.
 For inference, install `uv sync --group campaign-reproduction`. Prepared data

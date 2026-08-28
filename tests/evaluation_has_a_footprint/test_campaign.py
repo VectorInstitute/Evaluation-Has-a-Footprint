@@ -48,6 +48,20 @@ def test_effective_subset_condition_matrix(model: str, dataset: str, rows: int, 
     assert profile.batch_size == expected
 
 
+@pytest.mark.parametrize("dataset", ("bbq", "bbq_v"))
+def test_gemma4_uses_accepted_batch_four(dataset: str) -> None:
+    rows = 1000 if dataset == "bbq" else 1008
+    assert resolve_condition("M0", model_key="gemma4_12b", dataset=dataset).batch_size == 1
+    assert resolve_condition("M1", model_key="gemma4_12b", dataset=dataset).batch_size == 4
+    profile = resolve_condition("M5a", model_key="gemma4_12b", dataset=dataset, subset_rows=rows)
+    assert profile.batch_size == 4
+
+
+def test_gemma4_rejects_pixel_override() -> None:
+    with pytest.raises(ValueError, match="not qualified for Gemma"):
+        resolve_condition("M0", model_key="gemma4_12b", dataset="bbq_v", max_pixels_override=1024)
+
+
 @pytest.mark.parametrize("condition", ("M5a", "M5b"))
 def test_m5_reuses_exact_replica_one(condition: str) -> None:
     profile = resolve_condition(condition, model_key="qwen25_vl_7b", dataset="bbq", subset_rows=1000)

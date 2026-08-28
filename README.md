@@ -74,8 +74,12 @@ as `data/manifests/bbq_m4_subsets.json` and
      --bbq-v-sample /path/to/bbq_v/sample.csv
    ```
 
-4. Install the optional evaluation dependencies and run the portable Qwen
-   campaign runner as documented in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
+4. Install the optional evaluation dependencies and run the portable profiles as
+   documented in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
+
+The public runner includes the finalized Qwen profiles and Gemma-4-12B-it
+support. Gemma requires a separate compatible Transformers 5.x environment;
+see the reproduction guide before attempting a Gemma run.
 
 ## Repository structure
 

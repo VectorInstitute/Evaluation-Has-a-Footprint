@@ -1,4 +1,4 @@
-"""Portable lazy-import Qwen inference matching the accepted campaign."""
+"""Portable lazy-import inference matching the accepted Qwen and Gemma campaigns."""
 
 from __future__ import annotations
 
@@ -21,6 +21,7 @@ SMOKE_MAX_NEW_TOKENS = 128
 _CLASSES = {
     "dense_multimodal": "Qwen2_5_VLForConditionalGeneration",
     "multimodal_moe": "Qwen3VLMoeForConditionalGeneration",
+    "gemma4_unified": "Gemma4UnifiedForConditionalGeneration",
 }
 
 
@@ -72,14 +73,23 @@ def load_model(model_key: str, *, quantization: str = "none", device_map: str = 
     spec: dict[str, Any] = {**MODELS[model_key], "key": model_key}
     processor = transformers.AutoProcessor.from_pretrained(spec["hf_id"], revision=spec["revision"])
     processor.tokenizer.padding_side = "left"
-    model_class = getattr(transformers, _CLASSES[spec["family"]])
-    model = model_class.from_pretrained(
-        spec["hf_id"],
-        revision=spec["revision"],
-        torch_dtype=torch.bfloat16,
-        device_map=device_map,
-        quantization_config=_quantization_config(torch, transformers, quantization),
-    )
+    model_class_name = _CLASSES[spec["family"]]
+    if not hasattr(transformers, model_class_name):
+        raise RuntimeError(
+            f"Installed Transformers does not provide {model_class_name}; "
+            f"{model_key} requires a separately qualified Gemma 4 toolchain."
+        )
+    model_class = getattr(transformers, model_class_name)
+    load_kwargs: dict[str, Any] = {
+        "revision": spec["revision"],
+        "device_map": device_map,
+        "quantization_config": _quantization_config(torch, transformers, quantization),
+    }
+    if spec["family"] == "gemma4_unified":
+        load_kwargs["dtype"] = torch.bfloat16
+    else:
+        load_kwargs["torch_dtype"] = torch.bfloat16
+    model = model_class.from_pretrained(spec["hf_id"], **load_kwargs)
     model.eval()
     return {
         "spec": spec,
@@ -111,10 +121,9 @@ def _move_to_model_device(inputs: Any, model: Any) -> Any:
     )
 
 
-def prepare_inputs(
-    bundle: dict[str, Any], messages: list[list[dict[str, Any]]], *, max_pixels: int | None = None
+def _prepare_qwen_inputs(
+    bundle: dict[str, Any], messages: list[list[dict[str, Any]]], *, max_pixels: int | None
 ) -> dict[str, Any]:
-    """Apply the matching chat template and prepare a single-modality batch."""
     processor = bundle["processor"]
     texts = [processor.apply_chat_template(message, tokenize=False, add_generation_prompt=True) for message in messages]
     image_flags = [
@@ -138,6 +147,52 @@ def prepare_inputs(
     return _move_to_model_device(
         processor(text=texts, images=image_inputs, padding=True, return_tensors="pt", **kwargs), bundle["model"]
     )
+
+
+def _prepare_gemma4_inputs(
+    bundle: dict[str, Any], messages: list[list[dict[str, Any]]], *, max_pixels: int | None
+) -> dict[str, Any]:
+    if max_pixels is not None:
+        raise RuntimeError("max_pixels_override is qualified only for Qwen VL preprocessing")
+    image_flags = [
+        any(part.get("type") == "image" for part in message[-1]["content"] if isinstance(part, dict))
+        for message in messages
+    ]
+    if any(image_flags) and not all(image_flags):
+        raise RuntimeError("A generation batch cannot mix text-only and image-text records")
+    prepared = bundle["processor"].apply_chat_template(
+        messages,
+        add_generation_prompt=True,
+        tokenize=True,
+        return_dict=True,
+        return_tensors="pt",
+        enable_thinking=False,
+        processor_kwargs={"padding": True},
+    )
+    if any(image_flags):
+        patch_embedder = getattr(getattr(bundle["model"], "model", None), "embed_vision", None)
+        patch_dense = getattr(patch_embedder, "patch_dense", None)
+        patch_ln1 = getattr(patch_embedder, "patch_ln1", None)
+        weight = getattr(patch_dense, "weight", None)
+        if (
+            weight is not None
+            and hasattr(weight.dtype, "is_floating_point")
+            and not weight.dtype.is_floating_point
+            and patch_ln1 is not None
+            and "pixel_values" in prepared
+        ):
+            prepared["pixel_values"] = prepared["pixel_values"].to(patch_ln1.weight.dtype)
+    return _move_to_model_device(prepared, bundle["model"])
+
+
+def prepare_inputs(
+    bundle: dict[str, Any], messages: list[list[dict[str, Any]]], *, max_pixels: int | None = None
+) -> dict[str, Any]:
+    """Apply the matching chat template and prepare a single-modality batch."""
+    family = bundle.get("spec", {}).get("family")
+    if family == "gemma4_unified":
+        return _prepare_gemma4_inputs(bundle, messages, max_pixels=max_pixels)
+    return _prepare_qwen_inputs(bundle, messages, max_pixels=max_pixels)
 
 
 def generate(bundle: dict[str, Any], inputs: dict[str, Any]) -> list[str]:

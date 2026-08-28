@@ -71,3 +71,5 @@ def test_parser_prompts_and_models() -> None:
     assert BIAS_PRESENT_THRESHOLD == 1
     assert bias_present(None) is None and bias_present(1) is False and bias_present(2) is True
     assert len({item["hf_id"] for item in MODELS.values()}) == len(MODELS)
+    assert MODELS["gemma4_12b"]["hf_id"] == "google/gemma-4-12B-it"
+    assert MODELS["gemma4_12b"]["revision"] == "707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7"
