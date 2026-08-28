@@ -29,7 +29,7 @@ their spread is descriptive rather than independent sampling uncertainty.
 
 ## Links
 
-- **Project website source:** [`doc/`](doc/)
+- **Project website:** [vectorinstitute.github.io/Evaluation-Has-a-Footprint](https://vectorinstitute.github.io/Evaluation-Has-a-Footprint/) ([source in `doc/`](doc/))
 - **Code:** [VectorInstitute/Evaluation-Has-a-Footprint](https://github.com/VectorInstitute/Evaluation-Has-a-Footprint)
 - **BBQ (original benchmark):** [NYU BBQ repository](https://github.com/nyu-mll/BBQ)
 - **BBQ-V (original benchmark):** [UCF-CRCV BBQ-Vision repository](https://github.com/UCF-CRCV/BBQ-Vision)
@@ -85,8 +85,8 @@ see the reproduction guide before attempting a Gemma run.
 
 ```text
 data/manifests/       Metadata-only full-set and M4 membership manifests
-doc/                  Static project website (`index.html` and assets)
-docs/                 Public methodology, data-license, and API documentation
+doc/                  Static project website published to GitHub Pages
+docs/                 Methodology, data-license, and API notes (markdown, not a site)
 results/figures/      Reviewed paper figures (no raw data or precomputed result package)
 scripts/              Lightweight public verification utilities
 src/                  Portable evaluation package
