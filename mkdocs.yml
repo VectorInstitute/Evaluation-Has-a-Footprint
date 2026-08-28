@@ -27,7 +27,6 @@ nav:
   - Methodology: methodology.md
   - Reproduction: reproduction.md
   - Data and licenses: data-and-licenses.md
-  - Results: results.md
   - API Reference: api.md
 plugins:
   - search

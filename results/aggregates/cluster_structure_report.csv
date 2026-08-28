@@ -1,3 +1,0 @@
-dataset,n_rows,n_clusters,rows_per_cluster_min,rows_per_cluster_max,rows_per_cluster_mean,rows_per_cluster_median,rows_per_cluster_distribution
-bbq,2000,500,4,4,4.0,4.0,"{""4"": 500}"
-bbq_v,1998,389,2,24,5.136246786632391,6.0,"{""2"": 92, ""4"": 86, ""6"": 189, ""8"": 3, ""10"": 3, ""12"": 3, ""14"": 4, ""20"": 6, ""22"": 1, ""24"": 2}"

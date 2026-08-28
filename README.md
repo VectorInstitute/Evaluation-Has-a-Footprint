@@ -1,6 +1,6 @@
 # Sustainable Responsible-AI Evaluation: When Compute Savings Change Benchmark Conclusions
 
-Research code, frozen-membership metadata, and aggregate results for the paper
+Research code and frozen-membership metadata for the paper
 *Sustainable Responsible-AI Evaluation: When Compute Savings Change Benchmark
 Conclusions*.
 
@@ -86,7 +86,7 @@ see the reproduction guide before attempting a Gemma run.
 ```text
 data/manifests/       Metadata-only full-set and M4 membership manifests
 docs/                 Public methodology, data-license, and API documentation
-results/              Curated aggregate-only Qwen campaign release
+results/figures/      Reviewed paper figures (no raw data or precomputed result package)
 scripts/              Lightweight public verification utilities
 src/                  Portable evaluation package
 REPRODUCIBILITY.md    Frozen-set reconstruction and validation guide

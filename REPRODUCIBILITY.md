@@ -112,6 +112,5 @@ Gemma; the public runtime intentionally fails closed when it is unavailable.
 This release does not redistribute benchmark content, model weights, raw
 predictions, judge archives, or the internal run archive. It also does not
 claim byte-for-byte recreation of every historical accepted prediction artifact
-or package a platform-independent Gemma environment. The curated aggregate
-results in [`results/`](results/) document the finalized public Qwen release;
-the paper is the authority for the full three-model scientific claims.
+or package a platform-independent Gemma environment. The paper is the authority
+for the full three-model scientific claims.
