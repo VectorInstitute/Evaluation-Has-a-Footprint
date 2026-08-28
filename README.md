@@ -17,6 +17,12 @@ We evaluate Qwen2.5-VL-7B, Qwen3-VL-30B-A3B, and Gemma-4-12B-it on BBQ and
 BBQ-V under seven conditions spanning batching, quantization, benchmark
 reduction, and their combinations.
 
+![Evaluation workflow](results/figures/evaluation_workflow.png)
+
+Each intervention is compared with the same full-benchmark BF16 baseline (M0).
+We jointly measure evaluation quality (accuracy, bias, reasoning quality) and
+operational footprint (inference time, GPU energy, estimated CO₂e, and water).
+
 ## Main findings
 
 - Larger batching changes accuracy by no more than 0.35 percentage points
@@ -93,7 +99,7 @@ see the reproduction guide before attempting a Gemma run.
 data/manifests/       Metadata-only full-set and M4 membership manifests
 doc/                  Static project website published to GitHub Pages
 docs/                 Methodology, data-license, and API notes (markdown, not a site)
-results/figures/      Reviewed paper figures (no raw data or precomputed result package)
+results/figures/      Reviewed paper figures, including the evaluation workflow
 scripts/              Lightweight public verification utilities
 src/                  Portable evaluation package
 REPRODUCIBILITY.md    Frozen-set reconstruction and validation guide
