@@ -15,28 +15,31 @@ cite the BBQ paper and comply with that license when using the dataset.
 ## BBQ-V
 
 [BBQ-V: Benchmarking Visual Stereotype Bias in Large Multimodal Models](https://github.com/UCF-CRCV/BBQ-Vision)
-is the image-and-text benchmark used here. Obtain it from the upstream
-[Hugging Face dataset](https://huggingface.co/datasets/ucf-crcv/BBQ-V) or the
-official project, then prepare it locally before using this runner. Its dataset
-card and official repository state [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
-and academic-research use for the images; users are responsible for complying
-with those terms and any applicable source-image requirements.
+is the image-and-text benchmark used here. Obtain it from the official project
+under its original access terms, then prepare it locally before using this
+runner. Its official repository and dataset documentation state
+[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) and
+academic-research use for the images; users are responsible for complying with
+those terms and any applicable source-image requirements.
+
+## Frozen membership metadata
+
+`data/manifests/` contains only membership IDs and provenance/validation
+metadata. It contains no benchmark questions, answers, answer options, labels,
+images, predictions, or judge artifacts. The manifests identify the frozen
+evaluation membership used here and must be used with separately prepared
+upstream BBQ and BBQ-V data. They do not grant rights to either dataset.
 
 ## Models
 
-The campaign used the following Qwen model cards and immutable revisions. Model
-weights are not redistributed here; obtain them from Hugging Face and comply
-with the upstream [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)
-model licenses.
+The public portable runner includes the following Qwen model cards and
+immutable revisions. Model weights are not redistributed here; obtain them
+from their original sources and comply with their upstream licenses.
 
 - [`Qwen/Qwen2.5-VL-7B-Instruct`](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct),
   revision `cc594898137f460bfe9f0759e9844b3ce807cfb5`.
 - [`Qwen/Qwen3-VL-30B-A3B-Instruct`](https://huggingface.co/Qwen/Qwen3-VL-30B-A3B-Instruct),
   revision `9c4b90e1e4ba969fd3b5378b57d966d725f1b86c`.
 
-## M4 metadata
-
-`data/manifests/` contains only subset membership IDs and
-provenance/validation metadata. It contains no benchmark questions, answers,
-answer options, labels, images, predictions, or judge artifacts. The manifests
-are used with separately prepared upstream BBQ and BBQ-V data.
+The paper also reports Gemma-4-12B-it results; no Gemma model weights or
+runnable Gemma profile are distributed by this repository.

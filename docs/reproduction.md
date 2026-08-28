@@ -1,36 +1,37 @@
 # Reproduction
 
-The portable runner reproduces the finalized two-model Qwen evaluation protocol
-from caller-prepared frozen data. It never downloads benchmark data, schedules
-jobs, or configures infrastructure.
+For the full current release procedure, including metadata-only frozen-set
+manifests, see the repository's
+[REPRODUCIBILITY.md](https://github.com/VectorInstitute/Evaluation-Has-a-Footprint/blob/main/REPRODUCIBILITY.md).
+
+The portable runner reproduces the finalized Qwen evaluation protocol from
+caller-prepared BBQ and BBQ-V data. It never downloads benchmark data,
+schedules jobs, or configures infrastructure. The paper reports three models;
+the public runnable package currently exposes the two Qwen campaign profiles.
 
 Install lightweight validation and documentation dependencies with `uv sync`.
-For inference, install `uv sync --group campaign-reproduction`. The accepted
-campaign used Python 3.11.15, PyTorch 2.11.0+cu130, Transformers 4.57.6,
-Accelerate 1.14.0, bitsandbytes 0.50.1, qwen-vl-utils 0.0.14, torchvision
-0.26.0+cu130, and Pillow 12.3.0. CUDA-tagged PyTorch wheels must be installed
-from the appropriate PyTorch CUDA 13.0 index; the normal portable dependency
-group intentionally does not claim numerical equivalence with another build.
+For inference, install `uv sync --group campaign-reproduction`. Prepared data
+must be obtained from their original upstream sources and validated against
+the metadata-only full frozen manifests in `data/manifests/` before use.
 
-Prepared data must be supplied separately as a directory containing `sample.csv`
-and its matching `sampling.json`; prepared BBQ-V also requires an `images/`
-directory with the hash-verified JPEG files. Invoke the runner with a pinned
-model, dataset, condition, prepared-data directory, output directory, and the
-explicit frozen membership file for M4/M5. The metadata-only manifests in
-`data/manifests/` reproduce the paper's retained units exactly, while
-`evaluation_has_a_footprint.subsets` deterministically regenerates and validates
-them against separately prepared upstream data. Gemma is not included in the
-current public scope.
+```bash
+python scripts/verify_frozen_manifests.py \
+  --bbq-sample /path/to/bbq/sample.csv \
+  --bbq-v-sample /path/to/bbq_v/sample.csv
+```
+
+The exact M4/M5 membership manifests are also in `data/manifests/`.
+`evaluation_has_a_footprint.subsets` validates them against separately prepared
+upstream data. M4 repeated memberships overlap and are descriptive rather than
+independent sampling uncertainty.
 
 Telemetry is optional: install it with `uv sync --group telemetry` in addition
-to the inference dependencies. Use `--telemetry` to measure only prediction
-generation. The explicit `--carbon-profile accepted-campaign` reproduces the
-59.0 gCO2e/kWh Ontario/ECCC, location-unconfirmed campaign scenario; for other
-settings, provide `--carbon-intensity-g-per-kwh` rather than assuming a
-location. `footprint.json` records NVML GPU-attributed energy as the primary
-measurement and CodeCarbon as a broader secondary cross-check. Water is always
-reported as an estimated 1.8–4.0 L/kWh range, with CodeCarbon total energy as
-the primary basis and NVML GPU energy as a secondary basis.
+to inference dependencies. `--telemetry` measures prediction generation only.
+`--carbon-profile accepted-campaign` records the 59.0 gCO2e/kWh
+Ontario/ECCC, location-unconfirmed campaign scenario; for another setting,
+provide `--carbon-intensity-g-per-kwh`. Water is always an estimated
+1.8–4.0 L/kWh range, with CodeCarbon total energy as the primary basis and
+NVML GPU energy as a secondary basis.
 
 The public parser reproduces the finalized general Qwen parsing and deterministic
 maintenance-recovery methodology. Two historical Qwen2.5 BBQ-V INT4 records
