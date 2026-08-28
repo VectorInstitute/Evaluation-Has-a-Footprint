@@ -95,6 +95,17 @@ a:hover {
   line-height: 1.55;
 }
 
+.author-names a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.author-names a:hover {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
 .author-block:not(:last-child)::after {
   content: ",";
   margin-right: 0.45rem;
@@ -506,8 +517,36 @@ a.project-button:hover {
   line-height: 1.55;
 }
 
+.citation {
+  padding: 3.6rem 1.5rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.citation .section-intro {
+  margin-bottom: 1.1rem;
+}
+
+.citation p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.bibtex-placeholder {
+  margin: 0.9rem 0 0;
+  padding: 0.85rem 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
 .acknowledgments {
-  padding: 3.6rem 1.5rem 4.2rem;
+  padding: 3.6rem 1.5rem 0;
   border-top: 1px solid var(--line);
 }
 
@@ -524,6 +563,30 @@ a.project-button:hover {
 
 .acknowledgments p + p {
   margin-top: 0.9rem;
+}
+
+.contact {
+  padding: 3.6rem 1.5rem 4.2rem;
+  border-top: 1px solid var(--line);
+}
+
+.contact .section-intro {
+  margin-bottom: 1.1rem;
+}
+
+.contact p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.contact a {
+  color: var(--link);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
 
 .footer {
@@ -632,6 +695,10 @@ a.project-button:hover {
   }
 
   .acknowledgments {
+    padding: 3rem 1.25rem 0;
+  }
+
+  .contact {
     padding: 3rem 1.25rem 3.4rem;
   }
 }
