@@ -25,9 +25,9 @@ Clickup Ticket(s): Link(s) if applicable.
 ## Testing
 
 <!-- Describe how you tested these changes -->
-- [ ] Tests pass locally (`uv run pytest tests/`)
-- [ ] Type checking passes (`uv run mypy <src_dir>`)
-- [ ] Linting passes (`uv run ruff check src_dir/`)
+- [ ] Tests pass locally (`uv run pytest`)
+- [ ] Type checking passes (`uv run mypy src`)
+- [ ] Linting passes (`uv run ruff check .`)
 - [ ] Manual testing performed (describe below)
 
 **Manual testing details:**

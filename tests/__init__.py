@@ -1,1 +1,1 @@
-"""Unit tests module."""
+"""Tests for the public package."""

@@ -19,10 +19,14 @@ repos:
       args: [--unsafe]
     - id: check-toml
 
-  - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.12.5
+  - repo: local
     hooks:
       - id: uv-lock
+        name: uv-lock
+        entry: uv lock
+        language: system
+        files: ^(uv\.lock|pyproject\.toml|uv\.toml)$
+        pass_filenames: false
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: 'v0.16.3'
@@ -37,7 +41,7 @@ repos:
     rev: v2.3.1
     hooks:
     - id: mypy
-      entry: python3 -m mypy --config-file pyproject.toml
+      entry: uv run mypy --config-file pyproject.toml
       language: system
       types: [python]
       exclude: "tests"
@@ -58,15 +62,16 @@ repos:
     hooks:
     - id: doctest
       name: doctest
-      entry: python3 -m doctest -o NORMALIZE_WHITESPACE
-      files: "^src/aieng_template_uv/"
+      entry: uv run pytest --doctest-modules src/evaluation_has_a_footprint tests/evaluation_has_a_footprint
+      files: "^src/evaluation_has_a_footprint/"
       language: system
+      pass_filenames: false
 
   - repo: local
     hooks:
     - id: pytest
       name: pytest
-      entry: python3 -m pytest -m "not integration_test"
+      entry: uv run pytest -m "not integration_test"
       language: system
       pass_filenames: false
       always_run: true

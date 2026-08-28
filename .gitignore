@@ -6,17 +6,39 @@ dist/
 wheels/
 *.egg-info
 
+# Environment files
+.env
+.env.*
+!.env.example
+
 # Virtual environments
-.venv
+.venv/
 
 # Lint & Test
 .mypy_cache/
 .pytest_cache/
 .ruff_cache/
+.coverage
+coverage.xml
 
-# Vscode
-.vscode
+# Experiment-local state (not release artifacts)
+wandb/
+.wandb/
+.cache/huggingface/
+.hf/
+hf_cache/
+model_cache/
+models/
+slurm-*.out
+slurm-*.err
+data/local/
+data/downloads/
+runs/local/
+artifacts/local/
 
-# macos
+# Editor and operating-system files
+.vscode/
 *.DS_Store
+
+# Generated documentation
 site/
