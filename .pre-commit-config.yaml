@@ -65,8 +65,8 @@ repos:
     hooks:
     - id: doctest
       name: doctest
-      entry: uv run pytest --doctest-modules src/evaluation_has_a_footprint tests/evaluation_has_a_footprint
-      files: "^src/evaluation_has_a_footprint/"
+      entry: uv run pytest --doctest-modules src/eval_efficiency tests/eval_efficiency
+      files: "^src/eval_efficiency/"
       language: system
       pass_filenames: false
 

@@ -50,4 +50,4 @@ python scripts/verify_frozen_manifests.py \
   --bbq-v-sample /path/to/bbq_v/sample.csv
 ```
 
-See [`REPRODUCIBILITY.md`](../../REPRODUCIBILITY.md) for the full procedure.
+See `REPRODUCIBILITY.md` for the full procedure.

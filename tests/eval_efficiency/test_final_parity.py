@@ -9,10 +9,10 @@ from typing import Any
 
 import pytest
 
-from evaluation_has_a_footprint import cli, runner
-from evaluation_has_a_footprint.datasets import validate_rows
-from evaluation_has_a_footprint.inference import _quantization_config, generate, inspect_quantization, prepare_inputs
-from evaluation_has_a_footprint.parsing import parse_primary, recover_maintenance
+from eval_efficiency import cli, runner
+from eval_efficiency.datasets import validate_rows
+from eval_efficiency.inference import _quantization_config, generate, inspect_quantization, prepare_inputs
+from eval_efficiency.parsing import parse_primary, recover_maintenance
 
 
 def _bbqv_rows(image_sha256: str, image_file: str = "image.jpg") -> list[dict[str, str]]:
@@ -287,5 +287,5 @@ def test_cli_runs_mocked_portable_artifact_flow(monkeypatch: Any, tmp_path: Path
 
 
 def test_historical_exception_is_documented() -> None:
-    text = Path("docs/reproduction.md").read_text(encoding="utf-8")
+    text = Path("REPRODUCIBILITY.md").read_text(encoding="utf-8")
     assert "artifact-specific" in text and "byte-for-byte" in text

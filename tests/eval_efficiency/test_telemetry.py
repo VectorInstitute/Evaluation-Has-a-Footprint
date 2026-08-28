@@ -8,7 +8,7 @@ from typing import Any
 
 import pytest
 
-from evaluation_has_a_footprint import telemetry
+from eval_efficiency import telemetry
 
 
 @dataclasses.dataclass

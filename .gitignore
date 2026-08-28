@@ -42,6 +42,3 @@ artifacts/local/
 
 # Generated documentation
 site/
-
-# Project-website local deploy state
-doc/.vercel/

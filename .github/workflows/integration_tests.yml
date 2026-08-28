@@ -10,7 +10,6 @@ on:
     paths:
       - .pre-commit-config.yaml
       - .github/workflows/code_checks.yml
-      - .github/workflows/docs.yml
       - .github/workflows/unit_tests.yml
       - .github/workflows/integration_tests.yml
       - '**.py'
@@ -25,7 +24,6 @@ on:
     paths:
       - .pre-commit-config.yaml
       - .github/workflows/code_checks.yml
-      - .github/workflows/docs.yml
       - .github/workflows/unit_tests.yml
       - .github/workflows/integration_tests.yml
       - '**.py'
@@ -58,13 +56,13 @@ jobs:
 
       - name: Install dependencies and check code
         run: |
-          uv run pytest -m "integration_test" --cov src/evaluation_has_a_footprint --cov-report=xml tests
+          uv run pytest -m "integration_test" --cov src/eval_efficiency --cov-report=xml tests
 
       # Uncomment this once this repo is configured on Codecov
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: VectorInstitute/sustainable-rai-evaluation
+          slug: anonymous/sustainable-rai-evaluation
           fail_ci_if_error: false
           verbose: true

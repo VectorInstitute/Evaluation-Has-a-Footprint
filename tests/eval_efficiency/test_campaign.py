@@ -6,9 +6,9 @@ import hashlib
 
 import pytest
 
-from evaluation_has_a_footprint.conditions import QWEN3_BBQV_MAX_PIXELS, resolve_condition
-from evaluation_has_a_footprint.inference import SMOKE_PROMPT, SMOKE_PROMPT_SHA256, build_messages
-from evaluation_has_a_footprint.parsing import parse_primary, recover_maintenance
+from eval_efficiency.conditions import QWEN3_BBQV_MAX_PIXELS, resolve_condition
+from eval_efficiency.inference import SMOKE_PROMPT, SMOKE_PROMPT_SHA256, build_messages
+from eval_efficiency.parsing import parse_primary, recover_maintenance
 
 
 @pytest.mark.parametrize(

@@ -6,8 +6,8 @@ import json
 from pathlib import Path
 from typing import Any
 
-from evaluation_has_a_footprint.conditions import resolve_condition
-from evaluation_has_a_footprint.runner import _scientific_prediction_fingerprint, run_prepared_evaluation
+from eval_efficiency.conditions import resolve_condition
+from eval_efficiency.runner import _scientific_prediction_fingerprint, run_prepared_evaluation
 
 
 def _records() -> list[dict[str, Any]]:
@@ -56,17 +56,17 @@ def test_prediction_fingerprint_excludes_runtime_metadata() -> None:
 
 def test_runner_writes_portable_artifacts(monkeypatch: Any, tmp_path: Path) -> None:
     monkeypatch.setattr(
-        "evaluation_has_a_footprint.runner.load_prepared_dataset",
+        "eval_efficiency.runner.load_prepared_dataset",
         lambda *_: (_records(), {"sample_fingerprint": "dataset-sha"}),
     )
     monkeypatch.setattr(
-        "evaluation_has_a_footprint.runner.load_model", lambda *_args, **_kwargs: {"quantization": {"verified": True}}
+        "eval_efficiency.runner.load_model", lambda *_args, **_kwargs: {"quantization": {"verified": True}}
     )
     monkeypatch.setattr(
-        "evaluation_has_a_footprint.runner.prepare_inputs", lambda *_args, **_kwargs: {"input_ids": object()}
+        "eval_efficiency.runner.prepare_inputs", lambda *_args, **_kwargs: {"input_ids": object()}
     )
     monkeypatch.setattr(
-        "evaluation_has_a_footprint.runner.generate", lambda *_args, **_kwargs: ['{"answer":"A","reasoning":"x"}']
+        "eval_efficiency.runner.generate", lambda *_args, **_kwargs: ['{"answer":"A","reasoning":"x"}']
     )
     condition = resolve_condition("M0", model_key="qwen25_vl_7b", dataset="bbq")
     result = run_prepared_evaluation(
@@ -83,24 +83,24 @@ def test_runner_writes_portable_artifacts(monkeypatch: Any, tmp_path: Path) -> N
 
 def test_runner_writes_footprint_only_when_telemetry_enabled(monkeypatch: Any, tmp_path: Path) -> None:
     monkeypatch.setattr(
-        "evaluation_has_a_footprint.runner.load_prepared_dataset",
+        "eval_efficiency.runner.load_prepared_dataset",
         lambda *_: (_records(), {"sample_fingerprint": "dataset-sha"}),
     )
     monkeypatch.setattr(
-        "evaluation_has_a_footprint.runner.load_model", lambda *_args, **_kwargs: {"quantization": {"verified": True}}
+        "eval_efficiency.runner.load_model", lambda *_args, **_kwargs: {"quantization": {"verified": True}}
     )
     monkeypatch.setattr(
-        "evaluation_has_a_footprint.runner.prepare_inputs", lambda *_args, **_kwargs: {"input_ids": object()}
+        "eval_efficiency.runner.prepare_inputs", lambda *_args, **_kwargs: {"input_ids": object()}
     )
     monkeypatch.setattr(
-        "evaluation_has_a_footprint.runner.generate", lambda *_args, **_kwargs: ['{"answer":"A","reasoning":"x"}']
+        "eval_efficiency.runner.generate", lambda *_args, **_kwargs: ['{"answer":"A","reasoning":"x"}']
     )
     events: list[str] = []
     monkeypatch.setattr(
-        "evaluation_has_a_footprint.runner.start_measurement", lambda **_kwargs: events.append("start") or {}
+        "eval_efficiency.runner.start_measurement", lambda **_kwargs: events.append("start") or {}
     )
     monkeypatch.setattr(
-        "evaluation_has_a_footprint.runner.stop_measurement",
+        "eval_efficiency.runner.stop_measurement",
         lambda _handle, **_kwargs: (
             events.append("stop")
             or {"measurement_status": "measured", "boundary": "inference_only", "schema_version": "public-footprint-v1"}

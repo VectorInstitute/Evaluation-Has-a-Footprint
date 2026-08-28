@@ -2,14 +2,14 @@
 
 import pytest
 
-from evaluation_has_a_footprint.datasets import (
+from eval_efficiency.datasets import (
     dataset_fingerprint,
     validate_rows,
 )
-from evaluation_has_a_footprint.metrics import summary
-from evaluation_has_a_footprint.model_registry import MODELS
-from evaluation_has_a_footprint.parsing import parse_answer
-from evaluation_has_a_footprint.prompts import (
+from eval_efficiency.metrics import summary
+from eval_efficiency.model_registry import MODELS
+from eval_efficiency.parsing import parse_answer
+from eval_efficiency.prompts import (
     BIAS_PRESENT_THRESHOLD,
     BIAS_SCORE_JUDGE_PROMPT,
     RELEVANCY_SCORE_JUDGE_PROMPT,

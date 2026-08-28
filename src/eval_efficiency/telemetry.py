@@ -234,7 +234,7 @@ def _codecarbon_tracker(codecarbon: Any, gpu_index: int, country_iso_code: str |
     if tracker_type is None:
         raise RuntimeError("CodeCarbon OfflineEmissionsTracker is unavailable.")
     kwargs: dict[str, Any] = {
-        "project_name": "evaluation-has-a-footprint",
+        "project_name": "eval-efficiency",
         "measure_power_secs": 1,
         "tracking_mode": "process",
         "gpu_ids": [gpu_index],

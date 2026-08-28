@@ -8,7 +8,7 @@ from typing import Callable
 
 import pytest
 
-from evaluation_has_a_footprint.subsets import (
+from eval_efficiency.subsets import (
     REPLICATE_TARGETS,
     TARGETS,
     _hash,

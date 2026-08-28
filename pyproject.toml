@@ -1,11 +1,9 @@
 [project]
-name = "evaluation-has-a-footprint"
+name = "eval-efficiency"
 version = "0.1.1"
-description = "Tools and documentation for evaluating the quality and environmental footprint of model evaluation."
+description = "Tools for evaluating model quality and evaluation-time computational footprint."
 readme = "README.md"
-authors = [ {name = "Vector AI Engineering", email = "ai_engineering@vectorinstitute.ai"}]
 license = "Apache-2.0"
-repository = "https://github.com/VectorInstitute/sustainable-rai-evaluation"
 requires-python = ">=3.11"
 dependencies = [
     "filelock==3.32.3",
@@ -145,5 +143,5 @@ markers = [
 
 [tool.coverage]
     [tool.coverage.run]
-    source=["src/evaluation_has_a_footprint"]
+    source=["src/eval_efficiency"]
     omit=["tests/*", "*__init__.py"]

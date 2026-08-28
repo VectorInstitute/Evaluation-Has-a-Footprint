@@ -716,7 +716,7 @@ wheels = [
 ]
 
 [[package]]
-name = "evaluation-has-a-footprint"
+name = "eval-efficiency"
 version = "0.1.1"
 source = { editable = "." }
 dependencies = [

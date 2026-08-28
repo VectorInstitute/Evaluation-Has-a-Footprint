@@ -1,1 +1,1 @@
-"""Tests for the Evaluation Has a Footprint package."""
+"""Tests for the evaluation-efficiency package."""

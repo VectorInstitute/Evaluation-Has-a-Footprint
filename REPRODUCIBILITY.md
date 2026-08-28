@@ -77,7 +77,7 @@ For GPU inference, add the optional profile:
 uv sync --group campaign-reproduction
 ```
 
-Run `python -m evaluation_has_a_footprint.cli --help` for the public command
+Run `python -m eval_efficiency.cli --help` for the public command
 interface. A run requires an explicit model, dataset, condition,
 `--prepared-dataset`, and output directory. M4/M5 conditions additionally
 require the corresponding explicit `--membership` JSON, target subset rows,
@@ -100,17 +100,19 @@ The accepted Qwen runs use the existing `transformers==4.57.6` environment
 declared by the `campaign-reproduction` dependency group. The accepted
 Gemma-4-12B-it runs require a Transformers 5.x build exposing
 `Gemma4UnifiedForConditionalGeneration`; the canonical runs used
-`transformers==5.14.1+computecanada`. The public PyPI release
+`transformers==5.14.1`. The public PyPI release
 `transformers==5.14.1` includes that class, but numerical equivalence with the
 canonical cluster build has not been verified here. Do not assume the
-Compute Canada build is installable from PyPI. Configure a compatible
+canonical cluster build is installable from PyPI. Configure a compatible
 Transformers 5.x environment and confirm the class is available before running
 Gemma; the public runtime intentionally fails closed when it is unavailable.
 
 ## What this does not reproduce
 
 This release does not redistribute benchmark content, model weights, raw
-predictions, judge archives, or the internal run archive. It also does not
+predictions, judge archives, or the internal run archive. Two historical
+Qwen2.5 BBQ-V INT4 records required artifact-specific recorded policy
+resolutions; those decisions are not generalized here. It also does not
 claim byte-for-byte recreation of every historical accepted prediction artifact
 or package a platform-independent Gemma environment. The paper is the authority
 for the full three-model scientific claims.
