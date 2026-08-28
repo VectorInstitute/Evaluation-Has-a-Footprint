@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="Sustainable Responsible-AI Evaluation: When Compute Savings Change Benchmark Conclusions">
+  <meta name="description" content="A research project on measuring evaluation quality and operational footprint together.">
+  <meta name="keywords" content="responsible AI, evaluation, efficiency, environmental footprint, benchmarking">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>Sustainable Responsible-AI Evaluation</title>
+
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main id="main-content">
+    <section class="project-hero" aria-labelledby="project-title">
+      <div class="container project-container">
+        <div class="project-hero__inner has-text-centered">
+          <h1 id="project-title" class="project-title">
+            <span>Sustainable Responsible-AI Evaluation:</span>
+            <span>When Compute Savings Change</span>
+            <span>Benchmark Conclusions</span>
+          </h1>
+
+          <div class="project-authors" aria-label="Authors">
+            <p class="author-names">
+              <span class="author-block">Ahmed El Kady<sup>1</sup></span>
+              <span class="author-block">Aravind Narayanan<sup>1</sup></span>
+              <span class="author-block">Rehana Noorani<sup>2</sup></span>
+              <span class="author-block">Yani Ioannou<sup>3</sup></span>
+              <span class="author-block">Kathryn Hume<sup>1</sup></span>
+              <span class="author-block">Shaina Raza<sup>1</sup></span>
+            </p>
+            <p class="author-affiliations">
+              <span class="affiliation"><sup>1</sup>Vector Institute</span>
+              <span class="affiliation"><sup>2</sup>Independent researcher</span>
+              <span class="affiliation"><sup>3</sup>University of Calgary</span>
+            </p>
+          </div>
+
+          <div class="project-actions" aria-label="Project links">
+            <span class="project-button project-button--disabled" aria-disabled="true">
+              <span class="icon" aria-hidden="true"><i class="fas fa-file-pdf"></i></span>
+              <span>Paper · Coming soon</span>
+            </span>
+            <a class="project-button" href="https://github.com/VectorInstitute/Evaluation-Has-a-Footprint" target="_blank" rel="noreferrer">
+              <span class="icon" aria-hidden="true"><i class="fab fa-github"></i></span>
+              <span>Code</span>
+            </a>
+          </div>
+
+          <nav class="dataset-sources" aria-label="Original benchmark sources">
+            <span>Original evaluation sources</span>
+            <a href="https://github.com/nyu-mll/BBQ" target="_blank" rel="noreferrer">BBQ <span aria-hidden="true">↗</span></a>
+            <a href="https://huggingface.co/datasets/ucf-crcv/BBQ-V" target="_blank" rel="noreferrer">BBQ-V <span aria-hidden="true">↗</span></a>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <section class="research-question" aria-labelledby="question-heading">
+      <div class="container prose-container has-text-centered">
+        <h2 id="question-heading">Can responsible-AI evaluation use substantially less compute without changing the conclusions we draw from it?</h2>
+        <p>We measure evaluation quality and operational footprint together, rather than treating efficiency as a proxy for trustworthy results.</p>
+      </div>
+    </section>
+
+    <section class="workflow-section" aria-labelledby="workflow-heading">
+      <div class="container figure-container">
+        <header class="section-intro has-text-centered">
+          <p class="section-label">Study design</p>
+          <h2 id="workflow-heading">How we evaluate</h2>
+        </header>
+
+        <p class="workflow-mobile-hint">Swipe to follow the workflow <span aria-hidden="true">→</span></p>
+        <div class="workflow-scroll" tabindex="0" aria-label="Horizontally scrollable workflow figure on small screens">
+          <figure class="workflow-figure">
+            <img src="static/images/workflow/evaluation-workflow.png" alt="Horizontal workflow from frozen BBQ and BBQ-V benchmarks through evaluation conditions, model inference, and answer and reasoning. Evaluation quality and operational footprint are measured together and compared with the M0 full BF16 baseline.">
+          </figure>
+        </div>
+        <p class="workflow-caption">Each intervention is compared with the same full-benchmark BF16 baseline (M0).</p>
+      </div>
+    </section>
+
+    <section class="study-summary" aria-labelledby="study-summary-heading">
+      <div class="container scope-container">
+        <header class="section-intro">
+          <p class="section-label">Evaluation scope</p>
+          <h2 id="study-summary-heading">What we evaluate</h2>
+        </header>
+
+        <div class="scope-grid">
+          <section class="scope-group" aria-labelledby="scope-benchmarks">
+            <h3 id="scope-benchmarks">Benchmarks</h3>
+            <p>BBQ and BBQ-V</p>
+            <p class="scope-detail">Frozen evaluation membership from the original benchmarks.</p>
+          </section>
+
+          <section class="scope-group" aria-labelledby="scope-models">
+            <h3 id="scope-models">Models</h3>
+            <ul class="scope-list">
+              <li>Qwen2.5-VL-7B</li>
+              <li>Qwen3-VL-30B-A3B</li>
+              <li>Gemma-4-12B-it</li>
+            </ul>
+          </section>
+
+          <section class="scope-group" aria-labelledby="scope-interventions">
+            <h3 id="scope-interventions">Efficiency interventions</h3>
+            <ul class="scope-list scope-list--compact">
+              <li><strong>M0</strong> BF16 baseline</li>
+              <li><strong>M1</strong> larger batching</li>
+              <li><strong>M2 / M3</strong> INT8 / INT4</li>
+              <li><strong>M4 / M5</strong> reduced benchmark / combinations</li>
+            </ul>
+          </section>
+
+          <section class="scope-group scope-group--outcomes" aria-labelledby="scope-outcomes">
+            <h3 id="scope-outcomes">Measured outcomes</h3>
+            <p><strong>Quality</strong><br>Accuracy, Bias Score / Bias Present, Reasoning Quality</p>
+            <p><strong>Footprint</strong><br>Inference time, measured GPU energy, estimated CO<sub>2</sub>e, estimated water use</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="key-findings" aria-labelledby="findings-heading">
+      <div class="container results-container">
+        <header class="section-intro has-text-centered">
+          <p class="section-label">Findings</p>
+          <h2 id="findings-heading">Compute savings change what the benchmark tells us</h2>
+        </header>
+
+        <div class="finding-list" aria-label="Key findings">
+          <article class="finding">
+            <p class="finding-number">01</p>
+            <h3>Batching is the reliable first lever</h3>
+            <p>Across the evaluated models and benchmarks, it largely preserved quality and usually lowered energy use.</p>
+          </article>
+          <article class="finding">
+            <p class="finding-number">02</p>
+            <h3>INT8 is not an energy shortcut here</h3>
+            <p>It preserved average quality, but raised runtime and energy use in every evaluated setting.</p>
+          </article>
+          <article class="finding">
+            <p class="finding-number">03</p>
+            <h3>Smaller benchmarks save most, with a limit</h3>
+            <p>They gave the most consistent savings, but conclusions became less stable at the smallest sizes.</p>
+          </article>
+        </div>
+
+        <div class="findings-viewer" data-figure-viewer>
+          <div class="findings-tabs" role="tablist" aria-label="Evidence views">
+            <button class="findings-tab" type="button" role="tab" id="tab-tradeoffs" aria-controls="panel-tradeoffs" aria-selected="true" data-panel="panel-tradeoffs">Overall trade-offs</button>
+            <button class="findings-tab" type="button" role="tab" id="tab-categories" aria-controls="panel-categories" aria-selected="false" data-panel="panel-categories">Responsible-AI effects</button>
+            <button class="findings-tab" type="button" role="tab" id="tab-subsets" aria-controls="panel-subsets" aria-selected="false" data-panel="panel-subsets">Benchmark scaling</button>
+          </div>
+
+          <section class="findings-panel" id="panel-tradeoffs" role="tabpanel" aria-labelledby="tab-tradeoffs">
+            <p class="findings-panel__intro">Energy, accuracy, and bias must be read together. Highlighted M0 and M4 points show the full baseline and reduced-benchmark conditions.</p>
+            <p class="result-mobile-hint">Swipe to inspect the figure <span aria-hidden="true">→</span></p>
+            <div class="result-figure-scroll" tabindex="0" aria-label="Horizontally scrollable quality and energy trade-off figure on small screens">
+              <figure class="result-figure result-figure--tradeoffs">
+                <img src="static/images/results/quality-energy-tradeoff.png" alt="Measured GPU energy versus accuracy for BBQ and BBQ-V. Marker shape denotes Qwen2.5, Qwen3-MoE, or Gemma 4; highlighted M0 and M4 points show the full baseline and reduced-benchmark conditions.">
+              </figure>
+            </div>
+            <p class="result-caption">The horizontal axis is logarithmic. Darker markers indicate lower Bias Present values.</p>
+          </section>
+
+          <section class="findings-panel" id="panel-categories" role="tabpanel" aria-labelledby="tab-categories" hidden>
+            <p class="findings-panel__intro">Aggregate stability can mask different effects across models, benchmark categories, and metrics. Batching is comparatively stable; INT4 produces the larger shifts.</p>
+            <p class="result-mobile-hint">Swipe to inspect the figure <span aria-hidden="true">→</span></p>
+            <div class="result-figure-scroll" tabindex="0" aria-label="Horizontally scrollable category effects figure on small screens">
+              <figure class="result-figure result-figure--categories">
+                <img src="static/images/results/category-effects-overview.png" alt="Category-level changes in accuracy, Bias Present, and Reasoning Quality across intervention conditions, model families, BBQ, and BBQ-V. Rows are benchmark categories and columns are conditions M1 through M5b.">
+              </figure>
+            </div>
+            <p class="result-caption">Rows are native benchmark categories. M1 through M3 are relative to M0; M5a and M5b are relative to the corresponding frozen M4 50% subset baseline.</p>
+          </section>
+
+          <section class="findings-panel" id="panel-subsets" role="tabpanel" aria-labelledby="tab-subsets" hidden>
+            <p class="findings-panel__intro">Energy falls almost in proportion to the benchmark retained, while agreement with the full evaluation varies across accuracy, bias, and reasoning quality.</p>
+            <p class="result-mobile-hint">Swipe to inspect the figure <span aria-hidden="true">→</span></p>
+            <div class="result-figure-scroll" tabindex="0" aria-label="Horizontally scrollable benchmark reduction figure on small screens">
+              <figure class="result-figure result-figure--subsets">
+                <img src="static/images/results/subset-quality-scaling.png" alt="Changes from the full evaluation result as the retained benchmark percentage decreases from 100 to 12.5 percent. Columns show accuracy, Bias Present, and Reasoning Quality; rows show BBQ and BBQ-V; colored lines indicate the three models.">
+              </figure>
+            </div>
+            <p class="result-caption">Values near zero agree with full M0. Error bars summarize five fixed frozen memberships at the 50% and smallest sizes; other points come from single frozen subsets.</p>
+          </section>
+        </div>
+
+        <aside class="interpretation-note" aria-labelledby="interpretation-heading">
+          <h3 id="interpretation-heading">Interpret within the study’s scope</h3>
+          <p>These findings are specific to the models, benchmarks, and hardware studied. Footprint estimates and judge-based metrics depend on their measurement choices, so results may not transfer unchanged to other settings.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="acknowledgments" aria-labelledby="acknowledgments-heading">
+      <div class="container prose-container">
+        <header class="section-intro">
+          <p class="section-label">Support</p>
+          <h2 id="acknowledgments-heading">Acknowledgments</h2>
+        </header>
+        <p>Resources used in preparing this research were provided, in part, by the Province of Ontario, the Government of Canada through CIFAR, and companies sponsoring the Vector Institute.</p>
+        <p>This research was funded by the European Union's Horizon Europe research and innovation programme under the AIXPERT project (Grant Agreement No. 101214389).</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container prose-container">
+      <p>Built from the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noreferrer">Academic Project Page Template</a>, adapted from <a href="https://nerfies.github.io" target="_blank" rel="noreferrer">Nerfies</a></p>
+    </div>
+  </footer>
+
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/figure-switcher.js"></script>
+</body>
+</html>
