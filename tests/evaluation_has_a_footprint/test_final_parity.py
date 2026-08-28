@@ -205,6 +205,42 @@ def test_generation_and_chat_template_settings() -> None:
     assert calls["decode"] == {"skip_special_tokens": True, "clean_up_tokenization_spaces": False}
 
 
+def test_gemma4_chat_template_disables_thinking() -> None:
+    calls: dict[str, Any] = {}
+
+    class Inputs(dict[str, Any]):
+        def to(self, device: str) -> "Inputs":
+            return self
+
+    class Processor:
+        def apply_chat_template(self, messages: object, **kwargs: Any) -> Inputs:
+            calls["template"] = kwargs
+            return Inputs(input_ids=type("Tokens", (), {"shape": (1, 2)})())
+
+    class Parameters:
+        device = "device"
+
+    class Model:
+        def parameters(self) -> Any:
+            return iter((Parameters(),))
+
+    bundle = {
+        "spec": {"family": "gemma4_unified"},
+        "processor": Processor(),
+        "model": Model(),
+    }
+    prepare_inputs(bundle, [[{"role": "user", "content": [{"type": "text", "text": "x"}]}]])
+    assert calls["template"]["tokenize"] is True
+    assert calls["template"]["enable_thinking"] is False
+    assert calls["template"]["processor_kwargs"] == {"padding": True}
+    with pytest.raises(RuntimeError, match="qualified only for Qwen"):
+        prepare_inputs(
+            bundle,
+            [[{"role": "user", "content": [{"type": "text", "text": "x"}]}]],
+            max_pixels=1024,
+        )
+
+
 def test_cli_runs_mocked_portable_artifact_flow(monkeypatch: Any, tmp_path: Path) -> None:
     records = [
         {

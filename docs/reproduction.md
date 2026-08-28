@@ -1,8 +1,8 @@
 # Reproduction
 
-The portable runner reproduces the finalized two-model Qwen evaluation protocol
-from caller-prepared frozen data. It never downloads benchmark data, schedules
-jobs, or configures infrastructure.
+The portable runner reproduces the finalized Qwen evaluation protocol, and the
+Gemma 4 12B extension, from caller-prepared frozen data. It never downloads
+benchmark data, schedules jobs, or configures infrastructure.
 
 Install lightweight validation and documentation dependencies with `uv sync`.
 For inference, install `uv sync --group campaign-reproduction`. The accepted
@@ -19,8 +19,13 @@ model, dataset, condition, prepared-data directory, output directory, and the
 explicit frozen membership file for M4/M5. The metadata-only manifests in
 `data/manifests/` reproduce the paper's retained units exactly, while
 `evaluation_has_a_footprint.subsets` deterministically regenerates and validates
-them against separately prepared upstream data. Gemma is not included in the
-current public scope.
+them against separately prepared upstream data. Gemma 4 12B (`gemma4_12b`,
+revision `707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7`) is included as a third
+model: accepted M1/M5a batch size is 4, thinking is disabled, and pixel
+overrides are rejected. Loading Gemma 4 requires Transformers
+`Gemma4UnifiedForConditionalGeneration` (the accepted Gemma campaign used a
+Transformers 5.x build). The default `campaign-reproduction` extra remains the
+Qwen-qualified 4.57.6 stack and will not load Gemma 4.
 
 Telemetry is optional: install it with `uv sync --group telemetry` in addition
 to the inference dependencies. Use `--telemetry` to measure only prediction
@@ -33,7 +38,10 @@ reported as an estimated 1.8–4.0 L/kWh range, with CodeCarbon total energy as
 the primary basis and NVML GPU energy as a secondary basis.
 
 The public parser reproduces the finalized general Qwen parsing and deterministic
-maintenance-recovery methodology. Two historical Qwen2.5 BBQ-V INT4 records
-required artifact-specific recorded policy resolutions; those decisions are not
-generalized here. This release is therefore not a byte-for-byte recreation
-mechanism for every historical accepted prediction artifact.
+maintenance-recovery methodology. Gemma accuracy additionally admits a single
+complete embedded JSON object recovered from otherwise malformed outputs;
+remaining malformed Gemma outputs are counted as incorrect. Two historical
+Qwen2.5 BBQ-V INT4 records required artifact-specific recorded policy
+resolutions; those decisions are not generalized here. This release is
+therefore not a byte-for-byte recreation mechanism for every historical
+accepted prediction artifact.

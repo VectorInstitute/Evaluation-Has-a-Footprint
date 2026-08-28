@@ -3,7 +3,7 @@
 The lightweight package provides frozen-dataset validation, membership verification,
 answer parsing, ground-truth metrics, finalized judge-prompt provenance, and model
 metadata. The optional `campaign-reproduction` dependency group enables the portable
-deterministic Qwen inference runner; judge execution is not included.
+deterministic Qwen inference runner and the Gemma 4 12B extension; judge execution is not included.
 
 The optional `telemetry` group enables inference-only footprint measurement.
 `evaluation_has_a_footprint.telemetry` keeps NVML as the primary GPU-attributed

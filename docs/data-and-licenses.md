@@ -24,15 +24,17 @@ with those terms and any applicable source-image requirements.
 
 ## Models
 
-The campaign used the following Qwen model cards and immutable revisions. Model
+The campaign used the following model cards and immutable revisions. Model
 weights are not redistributed here; obtain them from Hugging Face and comply
-with the upstream [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)
-model licenses.
+with the upstream licenses.
 
 - [`Qwen/Qwen2.5-VL-7B-Instruct`](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct),
-  revision `cc594898137f460bfe9f0759e9844b3ce807cfb5`.
+  revision `cc594898137f460bfe9f0759e9844b3ce807cfb5` ([Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)).
 - [`Qwen/Qwen3-VL-30B-A3B-Instruct`](https://huggingface.co/Qwen/Qwen3-VL-30B-A3B-Instruct),
-  revision `9c4b90e1e4ba969fd3b5378b57d966d725f1b86c`.
+  revision `9c4b90e1e4ba969fd3b5378b57d966d725f1b86c` ([Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)).
+- [`google/gemma-4-12B-it`](https://huggingface.co/google/gemma-4-12B-it),
+  revision `707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7` (Gemma license; users must
+  accept the upstream terms).
 
 ## M4 metadata
 

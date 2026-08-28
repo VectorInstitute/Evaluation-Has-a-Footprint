@@ -1,4 +1,4 @@
-"""Effective, fail-closed profiles for the accepted Qwen campaign."""
+"""Effective, fail-closed profiles for the accepted Qwen and Gemma campaigns."""
 
 from __future__ import annotations
 
@@ -46,6 +46,8 @@ def _batch_size(model_key: str, dataset: str, condition: str) -> int:
         return 8
     if model_key == "qwen3_vl_30b_a3b":
         return 2 if dataset == "bbq_v" else 8
+    if model_key == "gemma4_12b":
+        return 4
     raise ValueError(f"Unsupported model: {model_key}")
 
 
@@ -62,8 +64,10 @@ def resolve_condition(
     """Resolve an accepted profile and reject unrecorded condition combinations."""
     if name not in _BASE or dataset not in DATASETS:
         raise ValueError("Unknown condition or dataset")
-    if model_key not in {"qwen25_vl_7b", "qwen3_vl_30b_a3b"}:
+    if model_key not in {"qwen25_vl_7b", "qwen3_vl_30b_a3b", "gemma4_12b"}:
         raise ValueError(f"Unsupported model: {model_key}")
+    if max_pixels_override is not None and model_key == "gemma4_12b":
+        raise ValueError("max_pixels_override is not qualified for Gemma")
     dtype, quantization, uses_subset = _BASE[name]
     accepted_batch = _batch_size(model_key, dataset, name)
     if batch_size is not None and batch_size != accepted_batch:

@@ -11,7 +11,7 @@ from .runner import run_prepared_evaluation
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Execute one fail-closed public Qwen campaign profile."""
+    """Execute one fail-closed public campaign profile."""
     parser = argparse.ArgumentParser(prog="evaluation-footprint")
     parser.add_argument("--model", choices=tuple(MODELS), required=True)
     parser.add_argument("--dataset", choices=DATASETS, required=True)

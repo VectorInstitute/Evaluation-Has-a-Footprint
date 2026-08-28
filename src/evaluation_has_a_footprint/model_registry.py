@@ -19,5 +19,11 @@ MODELS = MappingProxyType(
             "family": "multimodal_moe",
             "modalities": ("text", "image_text"),
         },
+        "gemma4_12b": {
+            "hf_id": "google/gemma-4-12B-it",
+            "revision": "707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7",
+            "family": "gemma4_unified",
+            "modalities": ("text", "image_text"),
+        },
     }
 )

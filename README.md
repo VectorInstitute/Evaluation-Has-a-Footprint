@@ -1,6 +1,6 @@
 # Evaluation Has a Footprint
 
-Research code and aggregate-results release.
+Research code.
 
 This repository accompanies *Evaluation Has a Footprint*. It studies
 evaluation-efficiency interventions across the frozen BBQ and BBQ-V benchmarks
@@ -29,10 +29,10 @@ uv run mkdocs build
 
 ## Data, model weights, and results
 
-Benchmark data, images, model weights, and the internal experimental run archive
-are not bundled with this repository. Prepared data must be obtained separately;
-the current scope covers the finalized two-model Qwen campaign only. Curated
-aggregate-only results are available in [results/README.md](results/README.md).
+Benchmark data, images, model weights, and experimental result tables are not
+bundled with this repository. Prepared data must be obtained separately. The
+runner covers the finalized Qwen campaign profiles and the Gemma 4 12B
+extension. Frozen M4 memberships are under `data/manifests/`.
 
 ## Optional campaign reproduction
 
