@@ -2,14 +2,14 @@
 
 For the full current release procedure, including metadata-only frozen-set
 manifests, see the repository's
-[REPRODUCIBILITY.md](https://github.com/VectorInstitute/Evaluation-Has-a-Footprint/blob/main/REPRODUCIBILITY.md).
+[REPRODUCIBILITY.md](https://github.com/VectorInstitute/sustainable-rai-evaluation/blob/main/REPRODUCIBILITY.md).
 
 The portable runner reproduces the finalized Qwen evaluation protocol and
 includes Gemma-4-12B-it support from caller-prepared BBQ and BBQ-V data. It
 never downloads benchmark data, schedules jobs, or configures infrastructure.
 Gemma requires a separate compatible Transformers 5.x environment; the
 canonical requirement and fail-closed behavior are documented in
-[REPRODUCIBILITY.md](https://github.com/VectorInstitute/Evaluation-Has-a-Footprint/blob/main/REPRODUCIBILITY.md#5-gemma-4-environment).
+[REPRODUCIBILITY.md](https://github.com/VectorInstitute/sustainable-rai-evaluation/blob/main/REPRODUCIBILITY.md#5-gemma-4-environment).
 
 Install lightweight validation dependencies with `uv sync`.
 For inference, install `uv sync --group campaign-reproduction`. Prepared data

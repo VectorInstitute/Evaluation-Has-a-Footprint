@@ -42,8 +42,8 @@ their spread is descriptive rather than independent sampling uncertainty.
 
 ## Links
 
-- **Project website:** [vectorinstitute.github.io/Evaluation-Has-a-Footprint](https://vectorinstitute.github.io/Evaluation-Has-a-Footprint/) ([source in `doc/`](doc/))
-- **Code:** [VectorInstitute/Evaluation-Has-a-Footprint](https://github.com/VectorInstitute/Evaluation-Has-a-Footprint)
+- **Project website:** [vectorinstitute.github.io/sustainable-rai-evaluation](https://vectorinstitute.github.io/sustainable-rai-evaluation/) ([source in `doc/`](doc/))
+- **Code:** [VectorInstitute/sustainable-rai-evaluation](https://github.com/VectorInstitute/sustainable-rai-evaluation)
 - **arXiv:** To be added
 - **BBQ (original benchmark):** [NYU BBQ repository](https://github.com/nyu-mll/BBQ)
 - **BBQ-V (original benchmark):** [UCF-CRCV BBQ-Vision repository](https://github.com/UCF-CRCV/BBQ-Vision)

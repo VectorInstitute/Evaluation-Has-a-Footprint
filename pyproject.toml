@@ -5,7 +5,7 @@ description = "Tools and documentation for evaluating the quality and environmen
 readme = "README.md"
 authors = [ {name = "Vector AI Engineering", email = "ai_engineering@vectorinstitute.ai"}]
 license = "Apache-2.0"
-repository = "https://github.com/VectorInstitute/Evaluation-Has-a-Footprint"
+repository = "https://github.com/VectorInstitute/sustainable-rai-evaluation"
 requires-python = ">=3.11"
 dependencies = [
     "filelock==3.32.3",

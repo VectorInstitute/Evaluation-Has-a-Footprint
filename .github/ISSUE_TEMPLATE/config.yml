@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: 💬 Discussion
-    url: https://github.com/VectorInstitute/Evaluation-Has-a-Footprint/discussions
+    url: https://github.com/VectorInstitute/sustainable-rai-evaluation/discussions
     about: Ask questions or discuss ideas with the community
   - name: 📖 Documentation
-    url: https://github.com/VectorInstitute/Evaluation-Has-a-Footprint#readme
+    url: https://github.com/VectorInstitute/sustainable-rai-evaluation#readme
     about: Check the documentation for setup and usage guides
