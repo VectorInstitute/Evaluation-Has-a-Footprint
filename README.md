@@ -32,9 +32,7 @@ operational footprint (inference time, GPU energy, estimated CO₂e, and water).
   plus larger batch) generally retains near-baseline accuracy with substantial
   runtime and energy savings.
 
-These are campaign results, not universal claims. In particular, runtime is
-not a proxy for measured GPU energy, and the repeated M4 memberships overlap;
-their spread is descriptive rather than independent sampling uncertainty.
+P.S. These are experimental results, not universal claims. 
 
 ## Links
 
