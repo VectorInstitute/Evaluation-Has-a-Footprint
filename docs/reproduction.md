@@ -11,7 +11,7 @@ Gemma requires a separate compatible Transformers 5.x environment; the
 canonical requirement and fail-closed behavior are documented in
 [REPRODUCIBILITY.md](https://github.com/VectorInstitute/Evaluation-Has-a-Footprint/blob/main/REPRODUCIBILITY.md#5-gemma-4-environment).
 
-Install lightweight validation and documentation dependencies with `uv sync`.
+Install lightweight validation dependencies with `uv sync`.
 For inference, install `uv sync --group campaign-reproduction`. Prepared data
 must be obtained from their original upstream sources and validated against
 the metadata-only full frozen manifests in `data/manifests/` before use.

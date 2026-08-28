@@ -1,4 +1,4 @@
-name: docs
+name: pages
 permissions:
   contents: write
   pull-requests: write
@@ -8,93 +8,35 @@ on:
     branches:
       - main
     paths:
-      - .pre-commit-config.yaml
       - .github/workflows/docs.yml
-      - '**.py'
-      - '**.ipynb'
-      - '**.html'
-      - '**.js'
-      - '**.md'
-      - uv.lock
-      - pyproject.toml
-      - mkdocs.yml
-      - '**.png'
-      - '**.svg'
+      - 'doc/**'
   pull_request:
     branches:
       - main
     paths:
-      - .pre-commit-config.yaml
       - .github/workflows/docs.yml
-      - '**.py'
-      - '**.ipynb'
-      - '**.js'
-      - '**.html'
-      - uv.lock
-      - pyproject.toml
-      - '**.md'
-      - mkdocs.yml
-      - '**.png'
-      - '**.svg'
+      - 'doc/**'
 
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v7.0.1
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v10.0.1
-        with:
-          version: "0.9.11"
-          enable-cache: true
-
-      - name: Set up Python
-        uses: actions/setup-python@v7.0.0
-        with:
-          python-version-file: ".python-version"
-
-      - name: Install the project
-        run: uv sync --all-extras --group docs
-
-      - name: Build docs
-        run: uv run mkdocs build
-
-      - name: Create .nojekyll file
-        run: touch site/.nojekyll
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: docs-site
-          path: site/
-          retention-days: 1
+      - name: Check static website files
+        run: test -f doc/index.html && test -d doc/static && test -f doc/.nojekyll
 
   deploy:
-    needs: build
+    needs: validate
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v7.0.1
 
-      - name: Configure Git Credentials
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-
-      - name: Download artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: docs-site
-          path: site
-
-      - name: Ensure .nojekyll exists
-        run: touch site/.nojekyll
-
-      - name: Deploy to Github pages
+      - name: Deploy static site to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.9.0
         with:
           branch: gh-pages
-          folder: site
+          folder: doc

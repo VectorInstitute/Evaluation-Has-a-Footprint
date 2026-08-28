@@ -46,22 +46,10 @@ telemetry = [
     "codecarbon==3.3.0",
     "nvidia-ml-py==13.610.43",
 ]
-docs = [
-    "jinja2>=3.1.6", # Pinning version to address vulnerability GHSA-cpwx-vrp4-4pq7
-    "pygments>=2.20.0", # Pinning version to address vulnerability CVE-2026-4539
-    "mkdocs>=1.6.0",
-    "mkdocs-material>=9.5.15",
-    "pymdown-extensions>=10.21.2", # Pinning version to fix pygments 2.20.0 compatibility
-    "mkdocstrings>=1.0.4",
-    "mkdocstrings-python>=1.10.0",
-    "ipykernel>=6.29.5",
-    "ipython>=8.31.0",
-    "tornado>=6.5.6", # Pinning version to address vulnerability CVE-2026-49854
-]
 
 # Default dependency groups to be installed
 [tool.uv]
-default-groups = ["dev", "docs"]
+default-groups = ["dev"]
 
 [tool.mypy]
 follow_imports = "normal"
