@@ -35,7 +35,7 @@ dev = [
 ]
 campaign-reproduction = [
     "torch==2.11.0",
-    "transformers==4.57.6",
+    "transformers==5.16.1",
     "accelerate==1.14.0",
     "bitsandbytes==0.50.1",
     "qwen-vl-utils==0.0.14",
