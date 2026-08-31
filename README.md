@@ -2,10 +2,13 @@
 
 **Authors:** [Ahmed El Kady](https://github.com/goushaa)<sup>1</sup>,
 [Aravind Narayanan](https://scholar.google.com/citations?hl=en&user=KCVuy2UAAAAJ)<sup>1</sup>,
-Rehana Noorani<sup>2</sup>, and
-[Shaina Raza](https://scholar.google.com/citations?user=chcz7RMAAAAJ&hl=en)<sup>1</sup>
+Rehana Noorani<sup>2</sup>,
+[Yani Ioannou](https://scholar.google.com/citations?user=Qy9yv44AAAAJ&hl=en)<sup>3</sup>, and
+[Shaina Raza](https://scholar.google.com/citations?user=chcz7RMAAAAJ&hl=en)<sup>1,\*</sup>
 
-<sup>1</sup>Vector Institute  <sup>2</sup>Independent researcher
+<sup>1</sup>Vector Institute  <sup>2</sup>Independent researcher  <sup>3</sup>University of Calgary
+
+<sup>\*</sup>Corresponding author: [shaina.raza@vectorinstitute.ai](mailto:shaina.raza@vectorinstitute.ai)
 
 Responsible-AI evaluation has a computational footprint, yet efficiency is
 rarely assessed alongside the conclusions that benchmarks are meant to support.
