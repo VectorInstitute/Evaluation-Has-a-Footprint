@@ -1,8 +1,8 @@
-# Sustainable Responsible-AI Evaluation: When Compute Savings Change Benchmark Conclusions
+# Stress-Testing Efficient Responsible-AI Evaluation: When Compute Savings Change Benchmark Conclusions
 
 **Authors:** [Ahmed El Kady](https://github.com/goushaa)<sup>1</sup>,
 [Aravind Narayanan](https://scholar.google.com/citations?hl=en&user=KCVuy2UAAAAJ)<sup>1</sup>,
-[Rehana Riaz](https://scholar.google.com/citations?user=_qrSPWYAAAAJ&hl=en&oi=ao)<sup>2</sup>,
+[Rehana Noorani](https://scholar.google.com/citations?user=_qrSPWYAAAAJ&hl=en&oi=ao)<sup>2</sup>,
 [Yani Ioannou](https://scholar.google.com/citations?user=Qy9yv44AAAAJ&hl=en)<sup>3</sup>, and
 [Shaina Raza](https://scholar.google.com/citations?user=chcz7RMAAAAJ&hl=en)<sup>1,\*</sup>
 
@@ -41,7 +41,7 @@ P.S. These are experimental results, not universal claims.
 
 - **Project website:** [vectorinstitute.github.io/sustainable-rai-evaluation](https://vectorinstitute.github.io/sustainable-rai-evaluation/) ([source in `doc/`](doc/))
 - **Code:** [VectorInstitute/sustainable-rai-evaluation](https://github.com/VectorInstitute/sustainable-rai-evaluation)
-- **arXiv:** To be added
+- **Paper:** [arXiv:2608.31108](https://arxiv.org/abs/2608.31108)
 - **BBQ (original benchmark):** [NYU BBQ repository](https://github.com/nyu-mll/BBQ)
 - **BBQ-V (original benchmark):** [UCF-CRCV BBQ-Vision repository](https://github.com/UCF-CRCV/BBQ-Vision)
 
@@ -120,10 +120,16 @@ innovation programme under the AIXPERT project (Grant Agreement No. 101214389).
 
 ## Citation
 
-BibTeX: **To be added**
-
 ```bibtex
-% To be added
+@misc{kady2026stresstestingefficientresponsibleaievaluation,
+  title = {Stress-Testing Efficient Responsible-AI Evaluation: When Compute Savings Change Benchmark Conclusions},
+  author = {Ahmed El Kady and Aravind Narayanan and Rehana Noorani and Yani Ioannou and Shaina Raza},
+  year = {2026},
+  eprint = {2608.31108},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.LG},
+  url = {https://arxiv.org/abs/2608.31108},
+}
 ```
 
 ## Contact
